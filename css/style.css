@@ -1105,15 +1105,29 @@ select option {
   gap: 8px;
   padding: 12px 0;
   margin-bottom: 16px;
-  border-top: 1px solid var(--color-gray-100);
-  border-bottom: 1px solid var(--color-gray-100);
+  border-top: 1px solid var(--color-gray-200);
+  border-bottom: 1px solid var(--color-gray-200);
 }
 
 .spec-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 8px 4px;
+  box-shadow: 0 1px 4px rgba(9, 23, 42, 0.05);
+  transition: all var(--transition-fast);
+}
+
+.spec-item:hover {
+  background: var(--color-white);
+  border-color: var(--color-gold-400);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.18);
+  transform: translateY(-2px);
 }
 
 .spec-item svg {
@@ -1127,11 +1141,13 @@ select option {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--color-navy-900);
+  line-height: 1.2;
 }
 
 .spec-label {
   font-size: 0.7rem;
   color: var(--color-gray-500);
+  margin-top: 2px;
 }
 
 .card-footer {
@@ -1140,22 +1156,38 @@ select option {
   align-items: center;
   justify-content: space-between;
   padding-top: 12px;
+  gap: 12px;
 }
 
 .card-price-block {
   display: flex;
   flex-direction: column;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid var(--color-gold-500);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  box-shadow: 0 1px 4px rgba(9, 23, 42, 0.05);
+  transition: all var(--transition-fast);
+}
+
+.card-price-block:hover {
+  background: var(--color-white);
+  border-color: var(--color-gold-400);
+  border-left: 3px solid var(--color-gold-500);
+  box-shadow: 0 4px 12px rgba(9, 23, 42, 0.08);
 }
 
 .price-label {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   color: var(--color-gray-500);
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.4px;
 }
 
 .price-value {
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: var(--color-navy-900);
   line-height: 1.2;
