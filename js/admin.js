@@ -16,6 +16,278 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnClearForm = document.getElementById('btn-clear-form');
   const btnResetDefaults = document.getElementById('btn-reset-defaults');
 
+  // ==========================================
+  // AUTHENTICATION & SECURITY MANAGEMENT
+  // ==========================================
+  const loginScreen = document.getElementById('admin-login-screen');
+  const dashboardWrap = document.getElementById('admin-dashboard-wrap');
+  const authBar = document.getElementById('admin-auth-bar');
+  const loggedUserName = document.getElementById('admin-logged-user-name');
+  const loginForm = document.getElementById('admin-login-form');
+  const loginUser = document.getElementById('admin-user');
+  const loginPass = document.getElementById('admin-pass');
+  const loginRemember = document.getElementById('admin-remember');
+  const loginAlert = document.getElementById('admin-login-alert');
+  const btnTogglePassword = document.getElementById('btn-toggle-password');
+  const eyeIcon = document.getElementById('eye-icon');
+  const eyeText = document.getElementById('eye-text');
+  const btnLogout = document.getElementById('btn-admin-logout');
+
+  // Modal Change Password Elements
+  const modalChangePwd = document.getElementById('modal-change-password');
+  const btnOpenChangePwd = document.getElementById('btn-open-change-password');
+  const btnClosePwdModal = document.getElementById('btn-close-pwd-modal');
+  const btnCancelChangePwd = document.getElementById('btn-cancel-change-pwd');
+  const formChangePwd = document.getElementById('form-change-password');
+  const pwdCurrent = document.getElementById('pwd-current');
+  const pwdNew = document.getElementById('pwd-new');
+  const pwdConfirm = document.getElementById('pwd-confirm');
+  const pwdChangeAlert = document.getElementById('pwd-change-alert');
+
+  // SHA-256 for secure password comparison
+  async function sha256(text) {
+    if (window.crypto && window.crypto.subtle) {
+      const msgUint8 = new TextEncoder().encode(text);
+      const hashBuffer = await window.crypto.subtle.digest('SHA-256', msgUint8);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+    // Basic fallback if crypto.subtle is unavailable
+    let hash = 0;
+    for (let i = 0; i < text.length; i++) {
+      hash = ((hash << 5) - hash) + text.charCodeAt(i);
+      hash |= 0;
+    }
+    return 'h_' + hash;
+  }
+
+  // Default credentials: admin / admin123
+  // sha256 of 'admin123': '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9'
+  const DEFAULT_CREDENTIALS = {
+    username: 'admin',
+    passwordHash: '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9'
+  };
+
+  function getStoredCredentials() {
+    try {
+      const saved = localStorage.getItem('jf_admin_auth_data');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch (e) {
+      console.warn('Error reading admin credentials:', e);
+    }
+    return DEFAULT_CREDENTIALS;
+  }
+
+  function saveStoredCredentials(creds) {
+    try {
+      localStorage.setItem('jf_admin_auth_data', JSON.stringify(creds));
+      return true;
+    } catch (e) {
+      console.error('Error saving credentials:', e);
+      return false;
+    }
+  }
+
+  function isSessionAuthenticated() {
+    return (
+      sessionStorage.getItem('jf_admin_authenticated') === 'true' ||
+      localStorage.getItem('jf_admin_remember_login') === 'true'
+    );
+  }
+
+  function showDashboardView() {
+    if (loginScreen) loginScreen.style.display = 'none';
+    if (dashboardWrap) dashboardWrap.style.display = 'block';
+    if (authBar) authBar.style.display = 'flex';
+
+    const creds = getStoredCredentials();
+    if (loggedUserName) {
+      loggedUserName.textContent = creds.username || 'Administrador';
+    }
+
+    // Initialize or refresh dashboard preview and property list
+    updateLivePreview();
+    renderPropertiesList();
+  }
+
+  function showLoginView(message = '', isError = true) {
+    if (dashboardWrap) dashboardWrap.style.display = 'none';
+    if (authBar) authBar.style.display = 'none';
+    if (loginScreen) loginScreen.style.display = 'flex';
+
+    if (loginAlert) {
+      if (message) {
+        loginAlert.className = isError ? 'admin-login-alert alert-error' : 'admin-login-alert alert-success';
+        loginAlert.innerHTML = `${isError ? '⚠️' : '✅'} <span>${message}</span>`;
+        loginAlert.style.display = 'flex';
+      } else {
+        loginAlert.style.display = 'none';
+      }
+    }
+
+    setTimeout(() => loginUser?.focus(), 100);
+  }
+
+  // Handle Login Submission
+  async function handleLoginSubmit(e) {
+    e.preventDefault();
+    const userVal = loginUser?.value.trim();
+    const passVal = loginPass?.value;
+
+    if (!userVal || !passVal) {
+      showLoginView('Por favor, informe o usuário e a senha.', true);
+      return;
+    }
+
+    const creds = getStoredCredentials();
+    const hashedInput = await sha256(passVal);
+
+    const isUserValid = userVal.toLowerCase() === creds.username.toLowerCase();
+    const isPassValid = hashedInput === creds.passwordHash;
+
+    if (isUserValid && isPassValid) {
+      // Set session
+      sessionStorage.setItem('jf_admin_authenticated', 'true');
+      if (loginRemember?.checked) {
+        localStorage.setItem('jf_admin_remember_login', 'true');
+      } else {
+        localStorage.removeItem('jf_admin_remember_login');
+      }
+
+      // Show success feedback
+      if (loginAlert) {
+        loginAlert.className = 'admin-login-alert alert-success';
+        loginAlert.innerHTML = '✅ <span>Autenticado com sucesso! Carregando painel...</span>';
+        loginAlert.style.display = 'flex';
+      }
+
+      setTimeout(() => {
+        if (loginAlert) loginAlert.style.display = 'none';
+        showDashboardView();
+      }, 400);
+    } else {
+      showLoginView('Usuário ou senha incorretos. Verifique suas credenciais.', true);
+      if (loginPass) {
+        loginPass.value = '';
+        loginPass.focus();
+      }
+    }
+  }
+
+  // Handle Logout
+  function handleLogout() {
+    if (confirm('Deseja realmente encerrar a sessão do painel de administração?')) {
+      sessionStorage.removeItem('jf_admin_authenticated');
+      localStorage.removeItem('jf_admin_remember_login');
+      if (loginPass) loginPass.value = '';
+      showLoginView('Você saiu com segurança do painel.', false);
+    }
+  }
+
+  // Password Toggle (Show / Hide)
+  btnTogglePassword?.addEventListener('click', () => {
+    if (!loginPass) return;
+    const isPassword = loginPass.type === 'password';
+    loginPass.type = isPassword ? 'text' : 'password';
+    if (eyeIcon) eyeIcon.textContent = isPassword ? '🙈' : '👁️';
+    if (eyeText) eyeText.textContent = isPassword ? 'Ocultar' : 'Mostrar';
+    btnTogglePassword.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+  });
+
+  // Modal Change Password
+  btnOpenChangePwd?.addEventListener('click', () => {
+    if (modalChangePwd) {
+      if (pwdChangeAlert) pwdChangeAlert.style.display = 'none';
+      if (formChangePwd) formChangePwd.reset();
+      modalChangePwd.showModal();
+      setTimeout(() => pwdCurrent?.focus(), 100);
+    }
+  });
+
+  function closePasswordModal() {
+    if (modalChangePwd) {
+      modalChangePwd.close();
+      if (formChangePwd) formChangePwd.reset();
+      if (pwdChangeAlert) pwdChangeAlert.style.display = 'none';
+    }
+  }
+
+  btnClosePwdModal?.addEventListener('click', closePasswordModal);
+  btnCancelChangePwd?.addEventListener('click', closePasswordModal);
+
+  modalChangePwd?.addEventListener('click', (e) => {
+    const rect = modalChangePwd.getBoundingClientRect();
+    const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height
+      && rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+    if (!isInDialog) {
+      closePasswordModal();
+    }
+  });
+
+  formChangePwd?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const currentVal = pwdCurrent?.value;
+    const newVal = pwdNew?.value;
+    const confirmVal = pwdConfirm?.value;
+
+    const creds = getStoredCredentials();
+    const hashedCurrent = await sha256(currentVal);
+
+    if (hashedCurrent !== creds.passwordHash) {
+      if (pwdChangeAlert) {
+        pwdChangeAlert.className = 'admin-login-alert alert-error';
+        pwdChangeAlert.innerHTML = '⚠️ <span>A senha atual está incorreta.</span>';
+        pwdChangeAlert.style.display = 'flex';
+      }
+      pwdCurrent?.focus();
+      return;
+    }
+
+    if (!newVal || newVal.length < 6) {
+      if (pwdChangeAlert) {
+        pwdChangeAlert.className = 'admin-login-alert alert-error';
+        pwdChangeAlert.innerHTML = '⚠️ <span>A nova senha deve ter no mínimo 6 caracteres.</span>';
+        pwdChangeAlert.style.display = 'flex';
+      }
+      pwdNew?.focus();
+      return;
+    }
+
+    if (newVal !== confirmVal) {
+      if (pwdChangeAlert) {
+        pwdChangeAlert.className = 'admin-login-alert alert-error';
+        pwdChangeAlert.innerHTML = '⚠️ <span>A confirmação de senha não confere com a nova senha.</span>';
+        pwdChangeAlert.style.display = 'flex';
+      }
+      pwdConfirm?.focus();
+      return;
+    }
+
+    // Save new password
+    const hashedNew = await sha256(newVal);
+    saveStoredCredentials({
+      username: creds.username,
+      passwordHash: hashedNew
+    });
+
+    if (pwdChangeAlert) {
+      pwdChangeAlert.className = 'admin-login-alert alert-success';
+      pwdChangeAlert.innerHTML = '✅ <span>Senha alterada com sucesso!</span>';
+      pwdChangeAlert.style.display = 'flex';
+    }
+
+    setTimeout(() => {
+      closePasswordModal();
+      alert('Sua senha de administrador foi atualizada com sucesso!');
+    }, 1200);
+  });
+
+  // Attach login & logout listeners
+  loginForm?.addEventListener('submit', handleLoginSubmit);
+  btnLogout?.addEventListener('click', handleLogout);
+
   // File Upload Elements
   const dropzoneMain = document.getElementById('dropzone-main');
   const fileInputMain = document.getElementById('adm-file-main');
@@ -583,6 +855,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init
   setupMainUpload();
   setupGalleryUpload();
-  updateLivePreview();
-  renderPropertiesList();
+
+  // Check Authentication status
+  if (isSessionAuthenticated()) {
+    showDashboardView();
+  } else {
+    showLoginView();
+  }
 });
