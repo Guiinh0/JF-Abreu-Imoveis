@@ -172,6 +172,57 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   // 2. PROPERTIES FILTER & RENDERING
   // =========================================================================
+  function updateNeighborhoodCounts(allProperties) {
+    const list = allProperties || ((typeof getActiveProperties === 'function') ? getActiveProperties() : PROPERTIES_DATA);
+
+    // 1. Costa do Sol
+    const costaCount = list.filter(item => {
+      const n = (item.neighborhood || '').toLowerCase();
+      const l = (item.location || '').toLowerCase();
+      return n.includes('costa do sol') || l.includes('costa do sol');
+    }).length;
+
+    // 2. Guaratuba
+    const guaratubaCount = list.filter(item => {
+      const n = (item.neighborhood || '').toLowerCase();
+      const l = (item.location || '').toLowerCase();
+      return n.includes('guaratuba') || l.includes('guaratuba');
+    }).length;
+
+    // 3. Riviera de São Lourenço
+    const rivieraCount = list.filter(item => {
+      const n = (item.neighborhood || '').toLowerCase();
+      const l = (item.location || '').toLowerCase();
+      return n.includes('riviera') || l.includes('riviera');
+    }).length;
+
+    // 4. Lado Praia / Pé na Areia
+    const praiaCount = list.filter(item => {
+      const d = (item.distanceBeach || '').toLowerCase();
+      const t = (item.type || '').toLowerCase();
+      const desc = (item.description || '').toLowerCase();
+      return d.includes('praia') || d.includes('mar') || t.includes('praia') || desc.includes('pé na areia');
+    }).length;
+
+    const formatBadge = (count) => {
+      if (count === 0) return '0 Imóveis Disponíveis';
+      if (count === 1) return '1 Imóvel Disponível';
+      return `${count} Imóveis Disponíveis`;
+    };
+
+    const elCosta = document.querySelector('[data-count-target="costa-do-sol"]');
+    if (elCosta) elCosta.textContent = formatBadge(costaCount);
+
+    const elGuaratuba = document.querySelector('[data-count-target="guaratuba"]');
+    if (elGuaratuba) elGuaratuba.textContent = formatBadge(guaratubaCount);
+
+    const elRiviera = document.querySelector('[data-count-target="riviera"]');
+    if (elRiviera) elRiviera.textContent = formatBadge(rivieraCount);
+
+    const elPraia = document.querySelector('[data-count-target="praia"]');
+    if (elPraia) elPraia.textContent = formatBadge(praiaCount);
+  }
+
   function getFilteredProperties() {
     const listSource = (typeof getActiveProperties === 'function') ? getActiveProperties() : PROPERTIES_DATA;
     return listSource.filter(item => {
@@ -180,8 +231,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
       }
       // Neighborhood
-      if (state.neighborhood !== 'todos' && !item.neighborhood.toLowerCase().includes(state.neighborhood.toLowerCase())) {
-        return false;
+      if (state.neighborhood !== 'todos') {
+        const n = (item.neighborhood || '').toLowerCase();
+        const l = (item.location || '').toLowerCase();
+        const target = state.neighborhood.toLowerCase();
+        if (!n.includes(target) && !l.includes(target)) {
+          return false;
+        }
       }
       // Bedrooms
       if (state.bedrooms !== 'todos') {
@@ -195,11 +251,14 @@ document.addEventListener('DOMContentLoaded', () => {
       // Search Query
       if (state.searchQuery.trim() !== '') {
         const q = state.searchQuery.toLowerCase();
-        const matchesRef = item.ref.toLowerCase().includes(q);
-        const matchesTitle = item.title.toLowerCase().includes(q);
-        const matchesLocation = item.location.toLowerCase().includes(q);
-        const matchesDesc = item.description.toLowerCase().includes(q);
-        if (!matchesRef && !matchesTitle && !matchesLocation && !matchesDesc) {
+        const matchesRef = (item.ref || '').toLowerCase().includes(q);
+        const matchesTitle = (item.title || '').toLowerCase().includes(q);
+        const matchesLocation = (item.location || '').toLowerCase().includes(q);
+        const matchesNeighborhood = (item.neighborhood || '').toLowerCase().includes(q);
+        const matchesDesc = (item.description || '').toLowerCase().includes(q);
+        const matchesType = (item.type || '').toLowerCase().includes(q);
+        const matchesDistance = (item.distanceBeach || '').toLowerCase().includes(q);
+        if (!matchesRef && !matchesTitle && !matchesLocation && !matchesNeighborhood && !matchesDesc && !matchesType && !matchesDistance) {
           return false;
         }
       }
@@ -215,6 +274,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderProperties() {
     const list = getFilteredProperties();
     const allActive = (typeof getActiveProperties === 'function') ? getActiveProperties() : PROPERTIES_DATA;
+    updateNeighborhoodCounts(allActive);
+
     if (allActive.length === 0) {
       propertiesCountEl.textContent = `Nenhum imóvel cadastrado no momento`;
       propertiesGrid.innerHTML = `
@@ -224,11 +285,22 @@ document.addEventListener('DOMContentLoaded', () => {
           <p style="color: var(--color-gray-600); font-size: 1rem; max-width: 540px; margin: 0 auto 24px; line-height: 1.6;">
             Nossa equipe está cadastrando novos imóveis exclusivos de alto padrão em Bertioga, Costa do Sol e Guaratuba. Fale conosco no WhatsApp para consultar oportunidades exclusivas off-market.
           </p>
-          <a href="https://wa.me/5513997198462?text=Olá! Gostaria de consultar imóveis de alto padrão disponíveis em Bertioga" target="_blank" rel="noopener" class="btn-search-submit" style="display:inline-flex; width:auto; text-decoration:none; margin: 0 auto;">
-            💬 Consultar Imóveis no WhatsApp
-          </a>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+            <a href="https://wa.me/5513997198462?text=Olá! Gostaria de consultar imóveis de alto padrão disponíveis em Bertioga" target="_blank" rel="noopener" class="btn-search-submit" style="display:inline-flex; width:auto; text-decoration:none; margin: 0 auto;">
+              💬 Consultar Imóveis no WhatsApp
+            </a>
+            <button id="btn-restore-samples" style="background:transparent; border:none; color:var(--color-navy-700); font-size:0.85rem; text-decoration:underline; cursor:pointer; padding:6px 12px;">
+              🔄 Restaurar Imóveis Padrão de Demonstração
+            </button>
+          </div>
         </div>
       `;
+      document.getElementById('btn-restore-samples')?.addEventListener('click', () => {
+        if (typeof restoreDefaultProperties === 'function') {
+          restoreDefaultProperties();
+          renderProperties();
+        }
+      });
       return;
     }
 
@@ -575,8 +647,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-neighborhood-filter]').forEach(card => {
       card.addEventListener('click', () => {
         const nb = card.getAttribute('data-neighborhood-filter');
-        state.neighborhood = nb;
-        if (filterNeighborhoodSelect) filterNeighborhoodSelect.value = nb;
+        if (nb === 'Lado Praia') {
+          state.neighborhood = 'todos';
+          state.searchQuery = 'praia';
+          if (searchInput) searchInput.value = 'praia';
+          if (filterNeighborhoodSelect) filterNeighborhoodSelect.value = 'todos';
+        } else {
+          state.neighborhood = nb;
+          state.searchQuery = '';
+          if (searchInput) searchInput.value = '';
+          if (filterNeighborhoodSelect) filterNeighborhoodSelect.value = nb;
+        }
         renderProperties();
         document.getElementById('imoveis')?.scrollIntoView({ behavior: 'smooth' });
       });
@@ -682,4 +763,9 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Obrigado! Abrindo o WhatsApp com nossa equipe para dar andamento ao seu cadastro.');
     });
   }
+
+  // Multi-tab sync: updates listing and counts in real-time when properties are added/removed in admin
+  window.addEventListener('storage', () => {
+    renderProperties();
+  });
 });
