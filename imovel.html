@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Imóvel | JF Abreu Imóveis</title>
+  
+  <meta name="description" id="meta-description" content="Confira os detalhes deste imóvel exclusivo em Bertioga com a JF Abreu Imóveis." />
+  <meta name="theme-color" content="#09172a" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" id="og-title" content="Imóvel Exclusivo | JF Abreu Imóveis" />
+  <meta property="og:description" id="og-description" content="Casas de alto padrão em Bertioga, Costa do Sol e Guaratuba." />
+  <meta property="og:image" id="og-image" content="assets/img/logo.png" />
+
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- =========================================================================
+       SITE HEADER
+       ========================================================================= -->
+  <header class="site-header scrolled">
+    <div class="container nav-container">
+      <a href="index.html#inicio" class="brand-logo" aria-label="JF Abreu Imóveis Home">
+        <img src="assets/img/logo.png" alt="JF Abreu Imóveis" />
+      </a>
+
+      <nav aria-label="Navegação Principal">
+        <ul class="nav-links">
+          <li><a href="index.html#inicio" class="nav-link">Início</a></li>
+          <li><a href="index.html#imoveis" class="nav-link active">Imóveis</a></li>
+          <li><a href="index.html#regioes" class="nav-link">Regiões</a></li>
+          <li><a href="index.html#sobre" class="nav-link">Sobre Nós</a></li>
+          <li><a href="index.html#contato" class="nav-link">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="index.html#imoveis" class="btn-header-cta" style="background:#0e223d; border:1px solid var(--color-gold-500); color:var(--color-gold-400);">
+          ← Todos os Imóveis
+        </a>
+      </div>
+
+      <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Abrir Menu Mobile">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN PROPERTY SINGLE CONTAINER
+       ========================================================================= -->
+  <main class="single-property-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href="index.html">Início</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="index.html#imoveis">Imóveis</a>
+        <span class="breadcrumb-separator">/</span>
+        <span id="breadcrumb-current-ref" style="color:var(--color-gold-600); font-weight:700;">Ref. ...</span>
+      </nav>
+
+      <!-- Header Info Block -->
+      <div class="single-header-box">
+        <div class="single-header-left">
+          <div class="single-badges-row">
+            <span id="prop-badge-ref" class="badge-ref">REF ...</span>
+            <span id="prop-badge-purpose" class="badge-feature">Venda</span>
+            <span id="prop-badge-tag" class="badge-feature" style="background:var(--color-navy-900); color:var(--color-gold-400);">Alto Padrão</span>
+          </div>
+
+          <h1 id="prop-title" class="single-title">Carregando Imóvel...</h1>
+          <p id="prop-subtitle" class="single-subtitle">Aguarde enquanto buscamos as especificações.</p>
+          
+          <div class="single-location-line">
+            <svg width="18" height="18" fill="var(--color-gold-600)" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span id="prop-location">Costa do Sol, Bertioga - SP</span>
+            <span style="margin: 0 6px; color:var(--color-gray-300);">•</span>
+            <span id="prop-distance" style="color:var(--color-gold-600); font-weight:700;">100m da Praia</span>
+          </div>
+        </div>
+
+        <div class="single-header-right">
+          <span id="prop-price-label" class="single-price-label">Valor de Venda</span>
+          <div id="prop-price" class="single-price-value">R$ ...</div>
+          <span style="font-size:0.8rem; color:var(--color-gray-500); margin-top:4px;">*Sujeito a alteração sem aviso prévio</span>
+        </div>
+      </div>
+
+      <!-- Luxury Image Gallery Layout -->
+      <div class="single-gallery-grid">
+        <div class="gallery-main-frame" id="btn-open-lightbox-main">
+          <img id="gallery-main-img" src="" alt="Foto Principal do Imóvel" />
+          <div style="position:absolute; bottom:16px; left:16px; background:rgba(0,0,0,0.65); color:white; font-size:0.82rem; padding:6px 14px; border-radius:var(--radius-full); backdrop-filter:blur(6px);">
+            🔍 Clique para ampliar
+          </div>
+        </div>
+
+        <div class="gallery-thumbs-col">
+          <div class="gallery-sub-frame" id="thumb-frame-1">
+            <img id="gallery-sub-img-1" src="" alt="Foto Secundária 1" />
+          </div>
+          <div class="gallery-sub-frame" id="thumb-frame-2">
+            <img id="gallery-sub-img-2" src="" alt="Foto Secundária 2" />
+            <div class="gallery-more-btn" id="btn-open-lightbox-all">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+              <span>Ver todas as fotos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Two-Column Layout -->
+      <div class="single-content-grid">
+        
+        <!-- Left Column: Details, Specs, Simulator -->
+        <div class="single-content-main">
+          
+          <!-- Key Specs Banner -->
+          <div class="single-specs-card">
+            <div class="single-spec-item">
+              <svg class="single-spec-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+              <span id="spec-beds" class="single-spec-val">0</span>
+              <span class="single-spec-lbl">Quartos</span>
+            </div>
+
+            <div class="single-spec-item">
+              <svg class="single-spec-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+              <span id="spec-suites" class="single-spec-val">0</span>
+              <span class="single-spec-lbl">Suítes</span>
+            </div>
+
+            <div class="single-spec-item">
+              <svg class="single-spec-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M21 10.78V8c0-1.65-1.35-3-3-3h-4c-.77 0-1.47.3-2 .78-.53-.48-1.23-.78-2-.78H6C4.35 5 3 6.35 3 8v2.78C1.84 11.4 1 12.6 1 14v1c0 1.66 1.34 3 3 3h.18L5 20h2l-.82-2h11.64L17 20h2l-.82-2H19c1.66 0 3-1.34 3-3v-1c0-1.4-.84-2.6-2-3.22z"/></svg>
+              <span id="spec-baths" class="single-spec-val">0</span>
+              <span class="single-spec-lbl">Banheiros</span>
+            </div>
+
+            <div class="single-spec-item">
+              <svg class="single-spec-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4.66l.12-.34h13.77l.11.34V17z"/></svg>
+              <span id="spec-parking" class="single-spec-val">0</span>
+              <span class="single-spec-lbl">Vagas</span>
+            </div>
+
+            <div class="single-spec-item">
+              <svg class="single-spec-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+              <span id="spec-land" class="single-spec-val">0 m²</span>
+              <span class="single-spec-lbl">Terreno</span>
+            </div>
+
+            <div class="single-spec-item">
+              <svg class="single-spec-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 4.5l5 4.5v6h-3v-4H10v4H7v-6l5-4.5z"/></svg>
+              <span id="spec-built" class="single-spec-val">0 m²</span>
+              <span class="single-spec-lbl">Construída</span>
+            </div>
+          </div>
+
+          <!-- Description Section -->
+          <div class="single-section-block">
+            <h2 class="single-block-title">Descrição Completa</h2>
+            <div id="prop-description-container">
+              <p class="single-text-p">Carregando descrição...</p>
+            </div>
+          </div>
+
+          <!-- Amenities & Features -->
+          <div class="single-section-block">
+            <h2 class="single-block-title">Diferenciais e Lazer</h2>
+            <div id="prop-features-grid" class="single-features-grid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+
+
+          <!-- Location & Neighborhood Insights -->
+          <div class="single-section-block">
+            <h2 class="single-block-title">Localização & Vizinhança</h2>
+            <p class="single-text-p">
+              Localizado na região de <strong id="prop-neighborhood-name">Costa do Sol</strong>, em Bertioga - SP. 
+              Um ambiente nobre, com segurança motorizada 24h, ruas tranquilas e preservação ambiental exuberante da Mata Atlântica e do Litoral Norte.
+            </p>
+            <div style="margin-top:16px; padding:16px; background:var(--color-sand-100); border-radius:var(--radius-md); display:flex; align-items:center; gap:12px;">
+              <span style="font-size:1.8rem;">🏖️</span>
+              <div style="font-size:0.9rem; color:var(--color-navy-900);">
+                <strong>Distância do Mar:</strong> <span id="prop-dist-box">A poucos passos da praia</span>. Acesso rápido e seguro para curtir a areia e o mar com a família.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Sticky Contact Sidebar -->
+        <aside class="single-sticky-sidebar">
+          
+          <div class="sidebar-contact-card">
+            <div class="sidebar-contact-header">
+              <h3>Interessado neste imóvel?</h3>
+              <p>Fale diretamente com os corretores responsáveis para agendar uma visita presencial ou tirar dúvidas.</p>
+            </div>
+
+            <!-- Agents direct WhatsApp options -->
+            <div class="sidebar-agents-stack">
+              <!-- Cinthia -->
+              <div class="sidebar-agent-row">
+                <div class="sidebar-agent-info">
+                  <div class="sidebar-agent-avatar">👩‍💼</div>
+                  <div class="sidebar-agent-text">
+                    <h5>Cinthia</h5>
+                    <span>Online agora</span>
+                  </div>
+                </div>
+                <a id="btn-wa-cinthia" href="#" target="_blank" rel="noopener" class="btn-sidebar-wa">
+                  WhatsApp
+                </a>
+              </div>
+
+              <!-- Edson -->
+              <div class="sidebar-agent-row">
+                <div class="sidebar-agent-info">
+                  <div class="sidebar-agent-avatar">👨‍💼</div>
+                  <div class="sidebar-agent-text">
+                    <h5>Edson</h5>
+                    <span>Online agora</span>
+                  </div>
+                </div>
+                <a id="btn-wa-edson" href="#" target="_blank" rel="noopener" class="btn-sidebar-wa" style="background:#0e223d; border:1px solid var(--color-gold-500); color:var(--color-gold-400);">
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <!-- Lead Form -->
+            <h4 class="sidebar-form-title">Envie uma Mensagem Rápida</h4>
+            <form id="single-inquiry-form" class="sidebar-inquiry-form">
+              <input type="text" id="inquiry-name" placeholder="Seu Nome Completo" required />
+              <input type="tel" id="inquiry-phone" placeholder="Seu WhatsApp com DDD" required />
+              <textarea id="inquiry-msg" placeholder="Olá, gostaria de saber mais informações sobre este imóvel e agendar uma visita."></textarea>
+              <button type="submit" class="btn-send-inquiry">
+                Solicitar Contato Imediato
+              </button>
+            </form>
+          </div>
+
+          <!-- Security Badge -->
+          <div class="sidebar-security-badge">
+            <svg width="24" height="24" fill="var(--color-gold-600)" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            <div>
+              <strong>Segurança JF Abreu</strong><br />
+              Atuando desde 1999 com credibilidade e suporte jurídico integral.
+            </div>
+          </div>
+
+          <!-- Share Button -->
+          <button id="btn-share-property" style="padding:12px; background:white; border:1px solid var(--color-gray-200); border-radius:var(--radius-md); font-size:0.88rem; font-weight:700; color:var(--color-navy-900); display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+            Compartilhar Imóvel
+          </button>
+
+        </aside>
+      </div>
+
+      <!-- Similar Properties Section -->
+      <section class="similar-properties-section">
+        <div class="section-header" style="text-align:left; margin-bottom:32px;">
+          <span class="section-tag">Sugestões Selecionadas</span>
+          <h2 class="section-title" style="font-size:1.8rem;">Outros Imóveis que Você Pode Gostar</h2>
+        </div>
+
+        <div id="similar-properties-grid" class="properties-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       LIGHTBOX MODAL FOR FULLSCREEN GALLERY
+       ========================================================================= -->
+  <div id="lightbox-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div style="position:relative; max-width:1100px; width:100%; max-height:92vh; display:flex; flex-direction:column; align-items:center;">
+      <button id="lightbox-close-btn" class="modal-close-btn" style="top:-50px; right:0;" aria-label="Fechar">✕</button>
+      <img id="lightbox-main-img" src="" alt="Visualização em Tela Cheia" style="max-width:100%; max-height:75vh; border-radius:var(--radius-md); box-shadow:0 25px 60px rgba(0,0,0,0.8); object-fit:contain;" />
+      <div id="lightbox-thumbs" style="display:flex; gap:12px; margin-top:16px; overflow-x:auto; padding:10px; max-width:100%;"></div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/img/logo.png" alt="JF Abreu Imóveis" />
+          <p class="footer-tagline">
+            Especialistas em conectar você e sua família aos melhores imóveis do litoral paulista. Conforto, segurança e a brisa do mar todos os dias.
+          </p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/jfabreuimoveis/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://wa.me/5513997198462" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#inicio">Início</a></li>
+            <li><a href="index.html#imoveis">Ver Imóveis</a></li>
+            <li><a href="index.html#regioes">Bairros Atendidos</a></li>
+            <li><a href="index.html#sobre">Sobre Nós</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Regiões</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#imoveis">Costa do Sol</a></li>
+            <li><a href="index.html#imoveis">Guaratuba</a></li>
+            <li><a href="index.html#imoveis">Riviera de São Lourenço</a></li>
+            <li><a href="index.html#imoveis">Casas Pé na Areia</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Atendimento</h4>
+          <ul class="footer-contact-list">
+            <li class="footer-contact-item">
+              <span>Rua Aprovada 745, Costa do Sol, Bertioga - SP</span>
+            </li>
+            <li class="footer-contact-item">
+              <div>
+                <a href="https://wa.me/5513997198462" target="_blank" rel="noopener">(13) 99719-8462 (Cinthia)</a><br />
+                <a href="https://wa.me/5513997718950" target="_blank" rel="noopener">(13) 99771-8950 (Edson)</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 1999 - 2026 JF Abreu Imóveis • Todos os direitos reservados</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/properties-data.js"></script>
+  <script src="js/single-property.js"></script>
+</body>
+</html>

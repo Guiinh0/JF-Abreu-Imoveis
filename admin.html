@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Cadastro de Imóveis | JF Abreu Imóveis</title>
+  <meta name="robots" content="noindex, nofollow" />
+  
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body style="background: var(--color-sand-50);">
+
+  <!-- Header -->
+  <header class="admin-header-bar">
+    <div class="container admin-header-flex">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <img src="assets/img/logo.png" alt="JF Abreu Imóveis" style="height:44px;" />
+        <div>
+          <h2 style="font-size:1.15rem; color:var(--color-gold-400); font-family:var(--font-display); line-height:1;">Painel de Gestão de Imóveis</h2>
+          <span style="font-size:0.8rem; color:#94a3b8;">Cadastre e atualize imóveis para o site</span>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:12px;">
+        <a href="index.html" class="btn-admin-secondary" style="padding:8px 18px;">
+          ← Ver Site Principal
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Dashboard -->
+  <main class="admin-dashboard-wrap">
+    <div class="container">
+      
+      <div class="admin-layout-grid">
+        
+        <!-- Left: Form -->
+        <div class="admin-card-box">
+          <h2 class="admin-box-title">Cadastrar Novo Imóvel</h2>
+          <p class="admin-box-sub">Preencha os campos abaixo. O imóvel ficará disponível no site e terá sua própria página individual.</p>
+
+          <form id="admin-property-form" class="admin-form-grid">
+            
+            <!-- Ref -->
+            <div class="admin-input-group">
+              <label for="adm-ref">Código de Referência *</label>
+              <input type="text" id="adm-ref" placeholder="Ex: 008" required />
+            </div>
+
+            <!-- Finalidade -->
+            <div class="admin-input-group">
+              <label for="adm-purpose">Finalidade *</label>
+              <select id="adm-purpose" required>
+                <option value="venda">Venda</option>
+                <option value="locacao">Locação Anual</option>
+              </select>
+            </div>
+
+            <!-- Título -->
+            <div class="admin-input-group full-width">
+              <label for="adm-title">Título Principal do Imóvel *</label>
+              <input type="text" id="adm-title" placeholder="Ex: Mansão Contemporânea a 50m da Praia com Vista Mar" required />
+            </div>
+
+            <!-- Subtítulo -->
+            <div class="admin-input-group full-width">
+              <label for="adm-subtitle">Subtítulo / Frase de Impacto</label>
+              <input type="text" id="adm-subtitle" placeholder="Ex: Sofisticação, piscina privativa e lazer completo para sua família" />
+            </div>
+
+            <!-- Tipo & Bairro -->
+            <div class="admin-input-group">
+              <label for="adm-type">Tipo de Imóvel *</label>
+              <select id="adm-type" required>
+                <option value="Casa">Casa</option>
+                <option value="Mansão">Mansão</option>
+                <option value="Casa de Praia">Casa de Praia</option>
+                <option value="Sobrado">Sobrado</option>
+                <option value="Terreno">Terreno / Lote</option>
+              </select>
+            </div>
+
+            <div class="admin-input-group">
+              <label for="adm-neighborhood">Bairro / Região *</label>
+              <select id="adm-neighborhood" required>
+                <option value="Costa do Sol">Costa do Sol</option>
+                <option value="Guaratuba">Guaratuba</option>
+                <option value="Riviera de São Lourenço">Riviera de São Lourenço</option>
+                <option value="Bertioga Centro">Bertioga Centro</option>
+                <option value="Boracéia">Boracéia</option>
+              </select>
+            </div>
+
+            <!-- Preço & Distância da Praia -->
+            <div class="admin-input-group">
+              <label for="adm-price">Preço Numérico (R$) *</label>
+              <input type="number" id="adm-price" placeholder="Ex: 3500000" required />
+            </div>
+
+            <div class="admin-input-group">
+              <label for="adm-distance">Distância da Praia *</label>
+              <input type="text" id="adm-distance" placeholder="Ex: 100m da Praia, Pé na Areia" required />
+            </div>
+
+            <!-- Quartos, Suítes, Banheiros, Vagas -->
+            <div class="admin-input-group">
+              <label for="adm-beds">Quartos / Dormitórios</label>
+              <input type="number" id="adm-beds" min="1" value="4" required />
+            </div>
+
+            <div class="admin-input-group">
+              <label for="adm-suites">Suítes</label>
+              <input type="number" id="adm-suites" min="0" value="4" required />
+            </div>
+
+            <div class="admin-input-group">
+              <label for="adm-baths">Banheiros</label>
+              <input type="number" id="adm-baths" min="1" value="5" required />
+            </div>
+
+            <div class="admin-input-group">
+              <label for="adm-parking">Vagas de Garagem</label>
+              <input type="number" id="adm-parking" min="1" value="3" required />
+            </div>
+
+            <!-- Metragem -->
+            <div class="admin-input-group">
+              <label for="adm-land">Área do Terreno</label>
+              <input type="text" id="adm-land" placeholder="Ex: 373 m²" value="373 m²" />
+            </div>
+
+            <div class="admin-input-group">
+              <label for="adm-built">Área Construída</label>
+              <input type="text" id="adm-built" placeholder="Ex: 320 m²" value="320 m²" />
+            </div>
+
+            <!-- Badge / Destaque -->
+            <div class="admin-input-group">
+              <label for="adm-badge">Selo de Destaque</label>
+              <select id="adm-badge">
+                <option value="Alto Padrão">Alto Padrão</option>
+                <option value="Exclusivo">Exclusivo</option>
+                <option value="Pé na Areia">Pé na Areia</option>
+                <option value="Oportunidade">Oportunidade</option>
+                <option value="Lançamento">Lançamento</option>
+              </select>
+            </div>
+
+            <!-- Foto Principal com Upload Direto do Computador -->
+            <div class="admin-input-group full-width">
+              <label>Foto Principal do Imóvel (Subir do Computador ou Link) *</label>
+              <div class="upload-dropzone" id="dropzone-main">
+                <input type="file" id="adm-file-main" accept="image/*" style="display:none;" />
+                <div class="dropzone-content" id="dropzone-content-main">
+                  <div class="dropzone-icon">📸</div>
+                  <div class="dropzone-text">
+                    <strong>Clique para escolher ou arraste a foto do seu computador</strong>
+                    <span>Suporta JPG, PNG, WEBP (fotos tiradas no celular ou câmera)</span>
+                  </div>
+                  <button type="button" class="btn-browse-file" onclick="document.getElementById('adm-file-main').click()">
+                    📁 Escolher Foto do Computador
+                  </button>
+                </div>
+                <div id="preview-main-box" class="upload-preview-box" style="display:none;">
+                  <img id="preview-main-img" src="" alt="Prévia da Foto Principal" />
+                  <div class="upload-preview-info">
+                    <span id="preview-main-filename" class="preview-filename"></span>
+                    <span style="font-size:0.75rem; color:#16a34a; font-weight:700;">✓ Foto carregada com sucesso!</span>
+                    <button type="button" id="btn-remove-main-img" class="btn-remove-file">✕ Trocar Foto</button>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:8px;">
+                <small style="color:var(--color-navy-700); text-decoration:underline; cursor:pointer;" id="toggle-manual-url">
+                  Ou prefere digitar uma URL/caminho existente? (Clique aqui)
+                </small>
+                <div id="manual-main-url-wrap" style="display:none; margin-top:6px;">
+                  <input type="text" id="adm-image" placeholder="Ex: assets/properties/ref-001.webp ou https://..." />
+                </div>
+              </div>
+            </div>
+
+            <!-- Fotos da Galeria com Upload Múltiplo do Computador -->
+            <div class="admin-input-group full-width">
+              <label>Fotos da Galeria (Subir Múltiplas do Computador)</label>
+              <div class="upload-dropzone" id="dropzone-gallery">
+                <input type="file" id="adm-file-gallery" accept="image/*" multiple style="display:none;" />
+                <div class="dropzone-content" id="dropzone-content-gallery">
+                  <div class="dropzone-icon">🖼️</div>
+                  <div class="dropzone-text">
+                    <strong>Clique para selecionar várias fotos da galeria do seu computador</strong>
+                    <span>Selecione 2, 5, 10 fotos de uma só vez (fotos internas, piscina, fachada)</span>
+                  </div>
+                  <button type="button" class="btn-browse-file" onclick="document.getElementById('adm-file-gallery').click()">
+                    📁 Escolher Fotos da Galeria
+                  </button>
+                </div>
+                <div id="gallery-preview-grid" class="gallery-thumbs-grid" style="display:none;"></div>
+              </div>
+              <div style="margin-top:8px;">
+                <small style="color:var(--color-navy-700); text-decoration:underline; cursor:pointer;" id="toggle-manual-gallery">
+                  Ou prefere digitar URLs separadas por vírgula? (Clique aqui)
+                </small>
+                <div id="manual-gallery-url-wrap" style="display:none; margin-top:6px;">
+                  <input type="text" id="adm-gallery" placeholder="Ex: assets/properties/ref-001.webp, assets/properties/ref-002.jpg" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Descrição -->
+            <div class="admin-input-group full-width">
+              <label for="adm-desc">Descrição Detalhada do Imóvel *</label>
+              <textarea id="adm-desc" rows="4" placeholder="Descreva os ambientes, acabamentos nobres, piscina, churrasqueira, segurança do condomínio..." required></textarea>
+            </div>
+
+            <!-- Diferenciais -->
+            <div class="admin-input-group full-width">
+              <label for="adm-features">Diferenciais e Lazer (separados por vírgula)</label>
+              <input type="text" id="adm-features" value="Piscina Privativa, Espaço Gourmet, Ar Condicionado, Condomínio Fechado, Segurança 24h, Churrasqueira" />
+            </div>
+
+            <!-- Actions -->
+            <div class="admin-actions-row full-width">
+              <button type="submit" class="btn-admin-primary">
+                💾 Salvar e Publicar no Site
+              </button>
+              <button type="button" id="btn-generate-code" class="btn-admin-secondary">
+                📋 Gerar Código para o Arquivo
+              </button>
+              <button type="button" id="btn-clear-form" style="color:var(--color-gray-500); text-decoration:underline;">
+                Limpar Campos
+              </button>
+            </div>
+
+          </form>
+
+          <!-- Code Export Box -->
+          <div id="code-export-container" style="display:none; margin-top:28px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <h4 style="font-size:0.95rem; color:var(--color-navy-900); font-weight:700;">Código Gerado para colar em js/properties-data.js:</h4>
+              <button id="btn-copy-code" style="padding:6px 14px; background:var(--color-gold-500); color:var(--color-navy-950); font-size:0.8rem; font-weight:700; border-radius:var(--radius-sm);">
+                Copiar Código
+              </button>
+            </div>
+            <div id="code-output" class="code-output-area"></div>
+          </div>
+
+        </div>
+
+        <!-- Right: Live Card Preview & Existing List -->
+        <div class="admin-preview-col" style="display:flex; flex-direction:column; gap:32px;">
+          
+          <!-- Live Preview -->
+          <div class="admin-card-box">
+            <h3 style="font-family:var(--font-display); font-size:1.25rem; color:var(--color-navy-900); margin-bottom:14px;">
+              Prévia do Card em Tempo Real
+            </h3>
+            
+            <div id="live-card-preview-container">
+              <!-- Rendered live -->
+            </div>
+          </div>
+
+          <!-- Existing Properties List -->
+          <div class="admin-card-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
+              <div>
+                <h3 style="font-family:var(--font-display); font-size:1.2rem; color:var(--color-navy-900); margin-bottom:2px;">
+                  Imóveis Ativos no Site (<span id="total-properties-count">0</span>)
+                </h3>
+                <p style="font-size:0.75rem; color:var(--color-gray-500);">Gerencie, exclua imóveis vendidos ou limpe o catálogo</p>
+              </div>
+              <div style="display:flex; gap:8px; align-items:center;">
+                <button type="button" id="btn-clear-all-properties" style="font-size:0.78rem; font-weight:700; color:#dc2626; background:#fee2e2; border:1px solid #fca5a5; padding:6px 12px; border-radius:var(--radius-sm); cursor:pointer; display:inline-flex; align-items:center; gap:4px;" title="Remover todos os imóveis para deixar o catálogo vazio">
+                  🗑️ Excluir Todos
+                </button>
+                <button type="button" id="btn-reset-defaults" style="font-size:0.78rem; font-weight:600; color:var(--color-navy-800); background:#f1f5f9; border:1px solid var(--color-gray-300); padding:6px 12px; border-radius:var(--radius-sm); cursor:pointer; display:inline-flex; align-items:center; gap:4px;" title="Restaurar os imóveis padrão de demonstração">
+                  🔄 Restaurar Padrões
+                </button>
+              </div>
+            </div>
+
+            <div id="admin-properties-list" style="display:flex; flex-direction:column; gap:12px; max-height:450px; overflow-y:auto; padding-right:6px;">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/properties-data.js"></script>
+  <script src="js/custom-select.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

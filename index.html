@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JF Abreu Imóveis | Imóveis de Alto Padrão em Bertioga, Costa do Sol e Guaratuba</title>
+  
+  <!-- SEO & Social Meta Tags -->
+  <meta name="description" content="Encontre o imóvel dos seus sonhos no litoral paulista com a JF Abreu Imóveis. Casas de alto padrão, pé na areia e condomínios fechados em Costa do Sol, Guaratuba e Bertioga. Tradição desde 1999." />
+  <meta name="keywords" content="JF Abreu Imóveis, Imobiliária Bertioga, Casas Costa do Sol, Imóveis Guaratuba, Riviera de São Lourenço, Casas de Praia, Casas Alto Padrão Litoral SP, Comprar Casa Bertioga" />
+  <meta name="author" content="JF Abreu Imóveis" />
+  <meta name="theme-color" content="#09172a" />
+  <link rel="canonical" href="https://jfabreuimoveis.com.br/" />
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jfabreuimoveis.com.br/" />
+  <meta property="og:title" content="JF Abreu Imóveis | Alto Padrão no Litoral Paulista" />
+  <meta property="og:description" content="Casas de luxo, pé na areia e condomínios fechados em Bertioga, Costa do Sol e Guaratuba. Mais de 25 anos de credibilidade." />
+  <meta property="og:image" content="assets/img/logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Three.js (for 3D Hero Experience) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       SITE HEADER
+       ========================================================================= -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#inicio" class="brand-logo" aria-label="JF Abreu Imóveis Home">
+        <img src="assets/img/logo.png" alt="JF Abreu Imóveis" />
+      </a>
+
+      <nav aria-label="Navegação Principal">
+        <ul class="nav-links">
+          <li><a href="#inicio" class="nav-link active">Início</a></li>
+          <li><a href="#imoveis" class="nav-link">Imóveis</a></li>
+          <li><a href="#regioes" class="nav-link">Regiões</a></li>
+          <li><a href="#sobre" class="nav-link">Sobre Nós</a></li>
+          <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#anuncie" class="btn-header-cta">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          Anuncie seu Imóvel
+        </a>
+      </div>
+
+      <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Abrir Menu Mobile">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       HERO SECTION WITH 3D CANVAS
+       ========================================================================= -->
+  <section class="hero-section" id="inicio">
+    <canvas id="hero-3d-canvas" aria-hidden="true"></canvas>
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Tradição Desde 1999 • Costa do Sol & Guaratuba
+      </div>
+
+      <h1 class="hero-title">
+        Encontre o Imóvel dos seus Sonhos no <span class="highlight">Litoral de Bertioga</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Viva com conforto, segurança e a brisa do mar todos os dias. Seleção exclusiva de casas de alto padrão, mansões pé na areia e residências em condomínios fechados.
+      </p>
+
+      <!-- Fast Search Card -->
+      <div class="search-box-card">
+        <div class="search-tabs">
+          <button class="search-tab-btn active" data-filter-purpose="todos">Todos os Imóveis</button>
+          <button class="search-tab-btn" data-filter-purpose="venda">Comprar</button>
+          <button class="search-tab-btn" data-filter-purpose="locacao">Alugar</button>
+        </div>
+
+        <form id="hero-search-form" class="search-grid">
+          <div class="search-field">
+            <label for="hero-search-location">Localização / Bairro</label>
+            <div class="search-input-wrap">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <select id="hero-search-location" class="search-select">
+                <option value="todos">Todos os Bairros</option>
+                <option value="Costa do Sol">Costa do Sol</option>
+                <option value="Guaratuba">Guaratuba</option>
+                <option value="Riviera">Riviera de São Lourenço</option>
+                <option value="Bertioga">Bertioga Geral</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-field">
+            <label for="hero-search-type">Tipo de Imóvel</label>
+            <div class="search-input-wrap">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+              <select id="hero-search-type" class="search-select">
+                <option value="todos">Todos os Tipos</option>
+                <option value="Mansão">Mansões de Luxo</option>
+                <option value="Casa">Casas em Condomínio</option>
+                <option value="Casa de Praia">Casas Lado Praia</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-field">
+            <label for="hero-search-price">Faixa de Valor</label>
+            <div class="search-input-wrap">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+              <select id="hero-search-price" class="search-select">
+                <option value="todos">Qualquer Valor</option>
+                <option value="2000000">Até R$ 2.000.000</option>
+                <option value="3000000">Até R$ 3.000.000</option>
+                <option value="5000000">Até R$ 5.000.000</option>
+                <option value="15000000">Acima de R$ 5.000.000</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-search-submit">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            Buscar Imóveis
+          </button>
+        </form>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">+25</span>
+          <span class="stat-label">Anos de Tradição (1999)</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Imóveis Verificados</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">+1.2k</span>
+          <span class="stat-label">Clientes Satisfeitos</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">4.9★</span>
+          <span class="stat-label">Avaliação no Google</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       PROPERTIES SECTION WITH REAL-TIME FILTERS
+       ========================================================================= -->
+  <section class="section section-light" id="imoveis">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Portfólio Exclusivo</span>
+        <h2 class="section-title">Imóveis Selecionados em Bertioga</h2>
+        <p class="section-description">
+          Explore nossa curadoria de residências de alto padrão perto do mar. Imóveis com documentação rigorosamente checada e assessoria imobiliária completa.
+        </p>
+      </div>
+
+      <!-- Dynamic Filter Bar -->
+      <div class="properties-filter-wrapper">
+        <div class="filter-top-row">
+          <div class="filter-pills">
+            <button class="filter-pill active" data-filter-purpose="todos">Todos</button>
+            <button class="filter-pill" data-filter-purpose="venda">Venda</button>
+            <button class="filter-pill" data-filter-purpose="locacao">Locação Anual</button>
+          </div>
+
+          <div style="flex-grow: 1; max-width: 380px;">
+            <input type="text" id="search-input" class="search-input" placeholder="Buscar por ref (ex: 001), bairro, título..." />
+          </div>
+
+          <div class="filter-sort-wrap">
+            <label for="filter-sort">Ordenar por:</label>
+            <select id="filter-sort" class="sort-select">
+              <option value="default">Relevância</option>
+              <option value="price-asc">Menor Preço</option>
+              <option value="price-desc">Maior Preço</option>
+              <option value="rooms-desc">Mais Quartos</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 14px; margin-top: 16px; flex-wrap: wrap; align-items: center;">
+          <select id="filter-neighborhood" class="sort-select" style="min-width: 160px;">
+            <option value="todos">Todos os Bairros</option>
+            <option value="Costa do Sol">Costa do Sol</option>
+            <option value="Guaratuba">Guaratuba</option>
+            <option value="Riviera">Riviera de São Lourenço</option>
+          </select>
+
+          <select id="filter-bedrooms" class="sort-select" style="min-width: 140px;">
+            <option value="todos">Dormitórios</option>
+            <option value="3">3+ Quartos</option>
+            <option value="4">4+ Quartos</option>
+            <option value="5">5+ Quartos</option>
+          </select>
+
+          <select id="filter-price" class="sort-select" style="min-width: 160px;">
+            <option value="todos">Qualquer Preço</option>
+            <option value="2000000">Até R$ 2 Milhões</option>
+            <option value="3000000">Até R$ 3 Milhões</option>
+            <option value="5000000">Até R$ 5 Milhões</option>
+            <option value="12000000">Acima de R$ 5 Milhões</option>
+          </select>
+
+          <button id="btn-clear-filters" style="font-size: 0.85rem; color: var(--color-gray-500); text-decoration: underline; margin-left: auto;">
+            Limpar Filtros
+          </button>
+        </div>
+
+        <div class="properties-counter">
+          <span id="properties-count">Carregando imóveis...</span>
+          <span style="font-size: 0.8rem; color: var(--color-gold-600); font-weight: 600;">Atendimento com Cinthia e Edson</span>
+        </div>
+      </div>
+
+      <!-- Properties Grid -->
+      <div id="properties-grid" class="properties-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       NEIGHBORHOODS GUIDE (REGIÕES EM ALTA)
+       ========================================================================= -->
+  <section class="section section-sand" id="regioes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Localizações Privilegiadas</span>
+        <h2 class="section-title">Onde Você Deseja Viver?</h2>
+        <p class="section-description">
+          Bertioga reúne algumas das praias mais preservadas e condomínios fechados mais seguros do estado de São Paulo. Clique em uma região para filtrar os imóveis disponíveis.
+        </p>
+      </div>
+
+      <div class="neighborhoods-grid">
+        <!-- Costa do Sol -->
+        <div class="neighborhood-card" data-neighborhood-filter="Costa do Sol">
+          <img src="assets/properties/ref-001.webp" alt="Costa do Sol Bertioga" loading="lazy" />
+          <div class="neighborhood-overlay">
+            <span class="neighborhood-count">7 Imóveis Disponíveis</span>
+            <h3 class="neighborhood-name">Costa do Sol</h3>
+            <p class="neighborhood-desc">Condomínio fechado nobre, com segurança rigorosa, ruas arborizadas e praia paradisíaca a passos da sua casa.</p>
+            <span class="neighborhood-link">Ver Imóveis em Costa do Sol →</span>
+          </div>
+        </div>
+
+        <!-- Guaratuba -->
+        <div class="neighborhood-card" data-neighborhood-filter="Guaratuba">
+          <img src="assets/properties/ref-003.jpg" alt="Guaratuba Bertioga" loading="lazy" />
+          <div class="neighborhood-overlay">
+            <span class="neighborhood-count">2 Imóveis Disponíveis</span>
+            <h3 class="neighborhood-name">Guaratuba</h3>
+            <p class="neighborhood-desc">Encontro único do Rio Guaratuba com o mar. Excelente para esportes náuticos, passeios de lancha e total tranquilidade.</p>
+            <span class="neighborhood-link">Ver Imóveis em Guaratuba →</span>
+          </div>
+        </div>
+
+        <!-- Riviera de São Lourenço -->
+        <div class="neighborhood-card" data-neighborhood-filter="Riviera">
+          <img src="assets/properties/ref-005.jpg" alt="Riviera de São Lourenço" loading="lazy" />
+          <div class="neighborhood-overlay">
+            <span class="neighborhood-count">Oportunidades Nobres</span>
+            <h3 class="neighborhood-name">Riviera de São Lourenço</h3>
+            <p class="neighborhood-desc">O bairro planejado mais cobiçado do litoral, com shopping, campos de golfe, tênis e infraestrutura completa.</p>
+            <span class="neighborhood-link">Ver Imóveis na Riviera →</span>
+          </div>
+        </div>
+
+        <!-- Lado Praia / Pé na Areia -->
+        <div class="neighborhood-card" data-neighborhood-filter="Costa do Sol">
+          <img src="assets/properties/ref-007.jpg" alt="Lado Praia Bertioga" loading="lazy" />
+          <div class="neighborhood-overlay">
+            <span class="neighborhood-count">A poucos metros da orla</span>
+            <h3 class="neighborhood-name">Lado Praia & Pé na Areia</h3>
+            <p class="neighborhood-desc">Imóveis a menos de 300 metros da faixa de areia. Desfrute da brisa do mar e esqueça o carro na garagem.</p>
+            <span class="neighborhood-link">Explorar Casas Lado Praia →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- =========================================================================
+       ABOUT SECTION / HISTÓRIA & AUTORIDADE
+       ========================================================================= -->
+  <section class="section section-light" id="sobre">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image-stack">
+          <img src="assets/properties/ref-002.jpg" alt="Equipe JF Abreu Imóveis em Bertioga" class="about-main-img" loading="lazy" />
+          <div class="about-badge-card">
+            <span class="about-badge-icon">🏛️</span>
+            <div>
+              <div class="about-badge-title">+25 Anos</div>
+              <div class="about-badge-sub">No Mercado Imobiliário (Desde 1999)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-content">
+          <span class="section-tag">Mais do que Imóveis, um Lar para Você</span>
+          <h2 class="section-title">Conectamos Você ao Melhor do Litoral</h2>
+          <p class="about-p">
+            Na <strong>JF Abreu Imóveis</strong>, acreditamos que a conquista de uma residência na praia é a realização de um sonho de vida e bem-estar para toda a família.
+          </p>
+          <p class="about-p">
+            Desde <strong>1999</strong>, atuamos com foco exclusivo no litoral de Bertioga, com destaque para os bairros <strong>Costa do Sol</strong> e <strong>Guaratuba</strong>. Nossa equipe, liderada por corretores experientes como a <strong>Cinthia</strong> e o <strong>Edson</strong>, garante um atendimento humanizado, seguro e sem complicações burocráticas.
+          </p>
+
+          <div class="about-features-list">
+            <div class="about-feat-item">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              <div>
+                <strong>Segurança Jurídica</strong>
+                <p>Verificação minuciosa de matrículas e certidões antes de qualquer negociação.</p>
+              </div>
+            </div>
+
+            <div class="about-feat-item">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2zm0-10h2v8h-2z"/></svg>
+              <div>
+                <strong>Atendimento Especializado</strong>
+                <p>Consultoria dedicada para encontrar o imóvel certo no seu orçamento.</p>
+              </div>
+            </div>
+
+            <div class="about-feat-item">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+              <div>
+                <strong>Pós-Venda Completo</strong>
+                <p>Auxílio na transferência de titularidade, cartórios e orientações de condomínio.</p>
+              </div>
+            </div>
+
+            <div class="about-feat-item">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <div>
+                <strong>Credibilidade Comprovada</strong>
+                <p>Milhares de clientes satisfeitos e reputação impecável em Bertioga.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       INSTAGRAM SHOWCASE (@jfabreuimoveis)
+       ========================================================================= -->
+  <section class="section section-sand" id="instagram">
+    <div class="container">
+      <div class="insta-header">
+        <div class="insta-profile-badge">
+          <div class="insta-avatar">
+            <img src="assets/img/logo.png" alt="Instagram JF Abreu Imóveis" />
+          </div>
+          <div class="insta-info">
+            <h3>@jfabreuimoveis</h3>
+            <p>Imóveis de Alto Padrão no Litoral de Bertioga • Costa do Sol & Guaratuba</p>
+          </div>
+        </div>
+
+        <a href="https://www.instagram.com/jfabreuimoveis/" target="_blank" rel="noopener" class="btn-follow-insta">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Seguir no Instagram
+        </a>
+      </div>
+
+      <!-- Instagram Grid -->
+      <div class="insta-grid">
+        <a href="https://www.instagram.com/jfabreuimoveis/" target="_blank" rel="noopener" class="insta-item">
+          <img src="assets/properties/ref-001.webp" alt="Post Instagram JF Abreu 1" loading="lazy" />
+          <div class="insta-overlay">
+            <span class="insta-stat">❤️ 248</span>
+            <span class="insta-stat">💬 19</span>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/jfabreuimoveis/" target="_blank" rel="noopener" class="insta-item">
+          <img src="assets/properties/ref-005.jpg" alt="Post Instagram JF Abreu 2" loading="lazy" />
+          <div class="insta-overlay">
+            <span class="insta-stat">❤️ 312</span>
+            <span class="insta-stat">💬 27</span>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/jfabreuimoveis/" target="_blank" rel="noopener" class="insta-item">
+          <img src="assets/properties/ref-003.jpg" alt="Post Instagram JF Abreu 3" loading="lazy" />
+          <div class="insta-overlay">
+            <span class="insta-stat">❤️ 189</span>
+            <span class="insta-stat">💬 14</span>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/jfabreuimoveis/" target="_blank" rel="noopener" class="insta-item">
+          <img src="assets/properties/ref-006.jpg" alt="Post Instagram JF Abreu 4" loading="lazy" />
+          <div class="insta-overlay">
+            <span class="insta-stat">❤️ 420</span>
+            <span class="insta-stat">💬 36</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       TESTIMONIALS SECTION
+       ========================================================================= -->
+  <section class="section section-light" id="depoimentos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Depoimentos & Avaliações</span>
+        <h2 class="section-title">O que Nossos Clientes Dizem</h2>
+        <p class="section-description">
+          A satisfação e tranquilidade de quem comprou ou alugou seu imóvel com a equipe JF Abreu.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "A equipe da JF Abreu foi impecável. A Cinthia nos atendeu com uma paciência e transparência raras no mercado imobiliário. Encontramos nossa casa a 100m da praia com toda a documentação checada. Recomendo de olhos fechados!"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar-circle">M</div>
+            <div class="author-info">
+              <h4>Marcelo & Viviane Albuquerque</h4>
+              <p>São Paulo - SP (Comprou em Costa do Sol)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "O Edson conhece cada pedaço de Bertioga e Costa do Sol como ninguém. A assessoria jurídica e o cuidado em cada detalhe do contrato nos deram total segurança no investimento. Já estamos curtindo nossa nova casa!"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar-circle">R</div>
+            <div class="author-info">
+              <h4>Dr. Roberto Silveira</h4>
+              <p>Campinas - SP (Comprou em Guaratuba)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Aluguei um imóvel de alto padrão com eles e todo o processo foi super rápido e sem burocracia desnecessária. Suporte ágil pelo WhatsApp a qualquer momento. Parabéns pelo profissionalismo e atenção!"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar-circle">F</div>
+            <div class="author-info">
+              <h4>Fernanda Castanheira</h4>
+              <p>Santos - SP (Locação Anual)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       ANUNCIE SEU IMÓVEL / LEAD CAPTURE
+       ========================================================================= -->
+  <section class="section section-sand" id="anuncie">
+    <div class="container">
+      <div class="cta-banner">
+        <div>
+          <span class="section-tag" style="background:rgba(212, 175, 55, 0.2); color:var(--color-gold-400); border-color:var(--color-gold-500);">Para Proprietários</span>
+          <h2>Deseja Vender ou Alugar seu Imóvel no Litoral?</h2>
+          <p>
+            Conte com mais de 25 anos de experiência e uma base qualificada de compradores e investidores interessados em Bertioga, Costa do Sol e Guaratuba.
+          </p>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; font-size:0.95rem; color:#cbd5e1;">
+            <li>✓ Produção de fotos e divulgação segmentada de alto padrão</li>
+            <li>✓ Avaliação mercadológica realista e justa</li>
+            <li>✓ Triagem completa de potenciais compradores</li>
+          </ul>
+        </div>
+
+        <form id="lead-anuncie-form" class="cta-form">
+          <h4 style="color:var(--color-white); font-size:1.15rem; font-weight:700;">Cadastre seu Imóvel Conosco</h4>
+          
+          <div class="form-group">
+            <input type="text" id="lead-name" placeholder="Seu Nome Completo" required />
+          </div>
+
+          <div class="form-group">
+            <input type="tel" id="lead-phone" placeholder="Seu WhatsApp com DDD" required />
+          </div>
+
+          <div class="form-group">
+            <select id="lead-type" required>
+              <option value="" disabled selected>Tipo de Imóvel</option>
+              <option value="Casa em Condomínio">Casa em Condomínio</option>
+              <option value="Mansão / Alto Padrão">Mansão / Alto Padrão</option>
+              <option value="Casa Pé na Areia">Casa Pé na Areia</option>
+              <option value="Terreno / Lote">Terreno / Lote</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <input type="text" id="lead-neighborhood" placeholder="Bairro ou Condomínio (Ex: Costa do Sol)" required />
+          </div>
+
+          <div class="form-group">
+            <select id="lead-purpose" required>
+              <option value="Venda">Pretendo Vender</option>
+              <option value="Locação">Pretendo Alugar</option>
+              <option value="Venda ou Locação">Venda ou Locação</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-form-submit">
+            Enviar Cadastro pelo WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="site-footer" id="contato">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/img/logo.png" alt="JF Abreu Imóveis" />
+          <p class="footer-tagline">
+            Especialistas em conectar você e sua família aos melhores imóveis do litoral paulista. Conforto, segurança e a brisa do mar todos os dias.
+          </p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/jfabreuimoveis/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://wa.me/5513997198462" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul class="footer-links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#imoveis">Ver Imóveis</a></li>
+            <li><a href="#regioes">Bairros Atendidos</a></li>
+            <li><a href="#sobre">Nossa História</a></li>
+            <li><a href="#anuncie">Anuncie seu Imóvel</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Regiões</h4>
+          <ul class="footer-links">
+            <li><a href="#imoveis">Costa do Sol</a></li>
+            <li><a href="#imoveis">Guaratuba</a></li>
+            <li><a href="#imoveis">Riviera de São Lourenço</a></li>
+            <li><a href="#imoveis">Bertioga Centro</a></li>
+            <li><a href="#imoveis">Casas Pé na Areia</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Fale Conosco</h4>
+          <ul class="footer-contact-list">
+            <li class="footer-contact-item">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span>Rua Aprovada 745 (antiga Rua EP Lote 10), Costa do Sol, Bertioga - SP</span>
+            </li>
+            <li class="footer-contact-item">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              <div>
+                <a href="https://wa.me/5513997198462" target="_blank" rel="noopener">(13) 99719-8462 (Cinthia)</a><br />
+                <a href="https://wa.me/5513997718950" target="_blank" rel="noopener">(13) 99771-8950 (Edson)</a>
+              </div>
+            </li>
+            <li class="footer-contact-item">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>contato@jfabreuimoveis.com.br</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 1999 - 2026 JF Abreu Imóveis • Todos os direitos reservados • CRECI Jurídico
+        </div>
+        <div class="footer-legal">
+          <a href="#">Políticas de Privacidade</a>
+          <a href="#">Termos de Uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       PROPERTY DETAIL MODAL
+       ========================================================================= -->
+  <div id="property-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="property-modal-window">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Fechar Janela">✕</button>
+      <div id="modal-dynamic-content">
+        <!-- Rendered by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       FLOATING DUAL-AGENT WHATSAPP WIDGET
+       ========================================================================= -->
+  <aside class="floating-whatsapp-widget" aria-label="Contato via WhatsApp">
+    <!-- Popover Menu -->
+    <div id="wa-agents-menu" class="whatsapp-agents-menu">
+      <div class="wa-menu-header">
+        <h4>Fale com a JF Abreu</h4>
+        <p>Escolha um de nossos corretores para atendimento imediato:</p>
+      </div>
+
+      <div class="wa-agents-list">
+        <!-- Cinthia -->
+        <a href="https://wa.me/5513997198462?text=Ol%C3%A1%20Cinthia!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20im%C3%B3veis%20em%20Bertioga." target="_blank" rel="noopener" class="wa-agent-card">
+          <div class="wa-agent-profile">
+            <div class="wa-agent-avatar">👩‍💼</div>
+            <div class="wa-agent-details">
+              <h5>Cinthia</h5>
+              <span>Online • Vendas e Locações</span>
+            </div>
+          </div>
+          <svg width="22" height="22" fill="#25d366" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        </a>
+
+        <!-- Edson -->
+        <a href="https://wa.me/5513997718950?text=Ol%C3%A1%20Edson!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20im%C3%B3veis%20em%20Bertioga." target="_blank" rel="noopener" class="wa-agent-card">
+          <div class="wa-agent-profile">
+            <div class="wa-agent-avatar">👨‍💼</div>
+            <div class="wa-agent-details">
+              <h5>Edson</h5>
+              <span>Online • Consultor de Investimentos</span>
+            </div>
+          </div>
+          <svg width="22" height="22" fill="#25d366" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Floating Button Trigger -->
+    <button id="floating-wa-trigger" class="floating-whatsapp-trigger" aria-label="Abrir WhatsApp da Imobiliária">
+      <span class="pulse-badge"></span>
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+    </button>
+  </aside>
+
+  <!-- Application Scripts -->
+  <script src="js/properties-data.js"></script>
+  <script src="js/custom-select.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
