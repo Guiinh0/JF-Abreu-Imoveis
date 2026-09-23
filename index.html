@@ -106,10 +106,12 @@
               <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
               <select id="hero-search-location" class="search-select">
                 <option value="todos">Todos os Bairros</option>
+                <option value="Boracéia">Boracéia</option>
                 <option value="Costa do Sol">Costa do Sol</option>
-                <option value="Guaratuba">Guaratuba</option>
+                <option value="Indaiá">Indaiá</option>
                 <option value="Riviera">Riviera de São Lourenço</option>
-                <option value="Bertioga">Bertioga Geral</option>
+                <option value="Guarujá">Guarujá</option>
+                <option value="Mogi das Cruzes">Mogi das Cruzes</option>
               </select>
             </div>
           </div>
@@ -210,9 +212,12 @@
         <div style="display: flex; gap: 14px; margin-top: 16px; flex-wrap: wrap; align-items: center;">
           <select id="filter-neighborhood" class="sort-select" style="min-width: 160px;">
             <option value="todos">Todos os Bairros</option>
+            <option value="Boracéia">Boracéia</option>
             <option value="Costa do Sol">Costa do Sol</option>
-            <option value="Guaratuba">Guaratuba</option>
+            <option value="Indaiá">Indaiá</option>
             <option value="Riviera">Riviera de São Lourenço</option>
+            <option value="Guarujá">Guarujá</option>
+            <option value="Mogi das Cruzes">Mogi das Cruzes</option>
           </select>
 
           <select id="filter-bedrooms" class="sort-select" style="min-width: 140px;">
@@ -249,62 +254,113 @@
   </section>
 
   <!-- =========================================================================
-       NEIGHBORHOODS GUIDE (REGIÕES EM ALTA)
+       NEIGHBORHOODS GUIDE (REGIÕES EM ALTA / CARROSSEL AUTOMÁTICO)
        ========================================================================= -->
   <section class="section section-sand" id="regioes">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Localizações Privilegiadas</span>
+        <span class="section-tag">Locais de Atuação</span>
         <h2 class="section-title">Onde Você Deseja Viver?</h2>
         <p class="section-description">
-          Bertioga reúne algumas das praias mais preservadas e condomínios fechados mais seguros do estado de São Paulo. Clique em uma região para filtrar os imóveis disponíveis.
+          Atuamos com máxima exclusividade e segurança nas regiões mais cobiçadas do litoral e em condomínios nobres. Conheça nossos bairros e filtre os imóveis disponíveis.
         </p>
       </div>
 
-      <div class="neighborhoods-grid">
-        <!-- Costa do Sol -->
-        <div class="neighborhood-card" data-neighborhood-filter="Costa do Sol">
-          <img src="assets/properties/ref-001.webp" alt="Costa do Sol Bertioga" loading="lazy" />
-          <div class="neighborhood-overlay">
-            <span class="neighborhood-count" data-count-target="costa-do-sol">0 Imóveis Disponíveis</span>
-            <h3 class="neighborhood-name">Costa do Sol</h3>
-            <p class="neighborhood-desc">Condomínio fechado nobre, com segurança rigorosa, ruas arborizadas e praia paradisíaca a passos da sua casa.</p>
-            <span class="neighborhood-link">Ver Imóveis em Costa do Sol →</span>
+      <div class="neighborhoods-carousel-container">
+        <!-- Botão Anterior -->
+        <button class="carousel-arrow carousel-arrow-prev" id="carousel-prev-btn" aria-label="Bairro Anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Viewport com overflow oculto para efeito coverflow -->
+        <div class="neighborhoods-carousel-viewport" id="neighborhoods-viewport">
+          <div class="neighborhoods-carousel-track" id="neighborhoods-track">
+            <!-- 1. Boracéia -->
+            <div class="neighborhood-card is-active" data-neighborhood-filter="Boracéia" data-card-index="0">
+              <img src="assets/properties/bairro-boraceia.jpg" alt="Boracéia Litoral" loading="lazy" />
+              <div class="neighborhood-overlay">
+                <span class="neighborhood-count" data-count-target="boraceia">0 Imóveis Disponíveis</span>
+                <h3 class="neighborhood-name">Boracéia</h3>
+                <p class="neighborhood-desc">Praia ampla de areias claras e mar preservado, condomínios com tranquilidade e contato direto com a Mata Atlântica.</p>
+                <span class="neighborhood-link">Ver Imóveis em Boracéia →</span>
+              </div>
+            </div>
+
+            <!-- 2. Costa do Sol -->
+            <div class="neighborhood-card" data-neighborhood-filter="Costa do Sol" data-card-index="1">
+              <img src="assets/properties/ref-001.webp" alt="Costa do Sol Bertioga" loading="lazy" />
+              <div class="neighborhood-overlay">
+                <span class="neighborhood-count" data-count-target="costa-do-sol">0 Imóveis Disponíveis</span>
+                <h3 class="neighborhood-name">Costa do Sol</h3>
+                <p class="neighborhood-desc">Condomínio fechado nobre, com segurança rigorosa 24h, ruas arborizadas e praia paradisíaca a passos da sua casa.</p>
+                <span class="neighborhood-link">Ver Imóveis em Costa do Sol →</span>
+              </div>
+            </div>
+
+            <!-- 3. Indaiá -->
+            <div class="neighborhood-card" data-neighborhood-filter="Indaiá" data-card-index="2">
+              <img src="assets/properties/bairro-indaia.jpg" alt="Indaiá Bertioga" loading="lazy" />
+              <div class="neighborhood-overlay">
+                <span class="neighborhood-count" data-count-target="indaia">0 Imóveis Disponíveis</span>
+                <h3 class="neighborhood-name">Indaiá</h3>
+                <p class="neighborhood-desc">Mar calmo e sereno em enseada protegida, orla ampla e charmosa, clima familiar e rica gastronomia.</p>
+                <span class="neighborhood-link">Ver Imóveis no Indaiá →</span>
+              </div>
+            </div>
+
+            <!-- 4. Riviera -->
+            <div class="neighborhood-card" data-neighborhood-filter="Riviera" data-card-index="3">
+              <img src="assets/properties/ref-005.jpg" alt="Riviera de São Lourenço" loading="lazy" />
+              <div class="neighborhood-overlay">
+                <span class="neighborhood-count" data-count-target="riviera">0 Imóveis Disponíveis</span>
+                <h3 class="neighborhood-name">Riviera</h3>
+                <p class="neighborhood-desc">O bairro planejado mais cobiçado do litoral, com shopping, campos de golfe, tênis e infraestrutura de ponta.</p>
+                <span class="neighborhood-link">Ver Imóveis na Riviera →</span>
+              </div>
+            </div>
+
+            <!-- 5. Guarujá -->
+            <div class="neighborhood-card" data-neighborhood-filter="Guarujá" data-card-index="4">
+              <img src="assets/properties/bairro-guaruja.jpg" alt="Guarujá Pérola do Atlântico" loading="lazy" />
+              <div class="neighborhood-overlay">
+                <span class="neighborhood-count" data-count-target="guaruja">0 Imóveis Disponíveis</span>
+                <h3 class="neighborhood-name">Guarujá</h3>
+                <p class="neighborhood-desc">A Pérola do Atlântico: condomínios exclusivos como Pernambuco e Acapulco, mansões à beira-mar e marinas.</p>
+                <span class="neighborhood-link">Ver Imóveis no Guarujá →</span>
+              </div>
+            </div>
+
+            <!-- 6. Mogi das Cruzes -->
+            <div class="neighborhood-card" data-neighborhood-filter="Mogi das Cruzes" data-card-index="5">
+              <img src="assets/properties/bairro-mogi.jpg" alt="Mogi das Cruzes Condomínios Fechados" loading="lazy" />
+              <div class="neighborhood-overlay">
+                <span class="neighborhood-count" data-count-target="mogi">0 Imóveis Disponíveis</span>
+                <h3 class="neighborhood-name">Mogi das Cruzes</h3>
+                <p class="neighborhood-desc">Condomínios fechados renomados (como Aruã), cercados de montanhas e ar puro, unindo sofisticação e qualidade de vida.</p>
+                <span class="neighborhood-link">Ver Imóveis em Mogi das Cruzes →</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Guaratuba -->
-        <div class="neighborhood-card" data-neighborhood-filter="Guaratuba">
-          <img src="assets/properties/ref-003.jpg" alt="Guaratuba Bertioga" loading="lazy" />
-          <div class="neighborhood-overlay">
-            <span class="neighborhood-count" data-count-target="guaratuba">0 Imóveis Disponíveis</span>
-            <h3 class="neighborhood-name">Guaratuba</h3>
-            <p class="neighborhood-desc">Encontro único do Rio Guaratuba com o mar. Excelente para esportes náuticos, passeios de lancha e total tranquilidade.</p>
-            <span class="neighborhood-link">Ver Imóveis em Guaratuba →</span>
-          </div>
-        </div>
+        <!-- Botão Próximo -->
+        <button class="carousel-arrow carousel-arrow-next" id="carousel-next-btn" aria-label="Próximo Bairro">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
 
-        <!-- Riviera de São Lourenço -->
-        <div class="neighborhood-card" data-neighborhood-filter="Riviera">
-          <img src="assets/properties/ref-005.jpg" alt="Riviera de São Lourenço" loading="lazy" />
-          <div class="neighborhood-overlay">
-            <span class="neighborhood-count" data-count-target="riviera">0 Imóveis Disponíveis</span>
-            <h3 class="neighborhood-name">Riviera de São Lourenço</h3>
-            <p class="neighborhood-desc">O bairro planejado mais cobiçado do litoral, com shopping, campos de golfe, tênis e infraestrutura completa.</p>
-            <span class="neighborhood-link">Ver Imóveis na Riviera →</span>
-          </div>
-        </div>
-
-        <!-- Lado Praia / Pé na Areia -->
-        <div class="neighborhood-card" data-neighborhood-filter="Lado Praia">
-          <img src="assets/properties/ref-007.jpg" alt="Lado Praia Bertioga" loading="lazy" />
-          <div class="neighborhood-overlay">
-            <span class="neighborhood-count" data-count-target="praia">0 Imóveis Disponíveis</span>
-            <h3 class="neighborhood-name">Lado Praia & Pé na Areia</h3>
-            <p class="neighborhood-desc">Imóveis a menos de 300 metros da faixa de areia. Desfrute da brisa do mar e esqueça o carro na garagem.</p>
-            <span class="neighborhood-link">Explorar Casas Lado Praia →</span>
-          </div>
-        </div>
+      <!-- Indicadores de Navegação / Dots -->
+      <div class="carousel-indicators" id="carousel-dots">
+        <button class="carousel-dot active" data-slide-index="0" aria-label="Ir para Boracéia"></button>
+        <button class="carousel-dot" data-slide-index="1" aria-label="Ir para Costa do Sol"></button>
+        <button class="carousel-dot" data-slide-index="2" aria-label="Ir para Indaiá"></button>
+        <button class="carousel-dot" data-slide-index="3" aria-label="Ir para Riviera"></button>
+        <button class="carousel-dot" data-slide-index="4" aria-label="Ir para Guarujá"></button>
+        <button class="carousel-dot" data-slide-index="5" aria-label="Ir para Mogi das Cruzes"></button>
       </div>
     </div>
   </section>
@@ -589,11 +645,12 @@
         <div class="footer-col">
           <h4>Regiões</h4>
           <ul class="footer-links">
-            <li><a href="#imoveis">Costa do Sol</a></li>
-            <li><a href="#imoveis">Guaratuba</a></li>
-            <li><a href="#imoveis">Riviera de São Lourenço</a></li>
-            <li><a href="#imoveis">Bertioga Centro</a></li>
-            <li><a href="#imoveis">Casas Pé na Areia</a></li>
+            <li><a href="#imoveis" data-neighborhood-filter="Boracéia">Boracéia</a></li>
+            <li><a href="#imoveis" data-neighborhood-filter="Costa do Sol">Costa do Sol</a></li>
+            <li><a href="#imoveis" data-neighborhood-filter="Indaiá">Indaiá</a></li>
+            <li><a href="#imoveis" data-neighborhood-filter="Riviera">Riviera de São Lourenço</a></li>
+            <li><a href="#imoveis" data-neighborhood-filter="Guarujá">Guarujá</a></li>
+            <li><a href="#imoveis" data-neighborhood-filter="Mogi das Cruzes">Mogi das Cruzes</a></li>
           </ul>
         </div>
 

@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. ATTACH EVENT LISTENERS
   setupFilterListeners();
+  initNeighborhoodsCarousel();
   setupFloatingWhatsApp();
   setupMobileNav();
   setupLeadForm();
@@ -174,35 +175,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   function updateNeighborhoodCounts(allProperties) {
     const list = allProperties || ((typeof getActiveProperties === 'function') ? getActiveProperties() : PROPERTIES_DATA);
+    const clean = str => (str || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-    // 1. Costa do Sol
-    const costaCount = list.filter(item => {
-      const n = (item.neighborhood || '').toLowerCase();
-      const l = (item.location || '').toLowerCase();
-      return n.includes('costa do sol') || l.includes('costa do sol');
-    }).length;
+    const countFor = (term) => {
+      const t = clean(term);
+      return list.filter(item => {
+        const n = clean(item.neighborhood);
+        const l = clean(item.location);
+        return n.includes(t) || l.includes(t);
+      }).length;
+    };
 
-    // 2. Guaratuba
-    const guaratubaCount = list.filter(item => {
-      const n = (item.neighborhood || '').toLowerCase();
-      const l = (item.location || '').toLowerCase();
-      return n.includes('guaratuba') || l.includes('guaratuba');
-    }).length;
-
-    // 3. Riviera de São Lourenço
-    const rivieraCount = list.filter(item => {
-      const n = (item.neighborhood || '').toLowerCase();
-      const l = (item.location || '').toLowerCase();
-      return n.includes('riviera') || l.includes('riviera');
-    }).length;
-
-    // 4. Lado Praia / Pé na Areia
-    const praiaCount = list.filter(item => {
-      const d = (item.distanceBeach || '').toLowerCase();
-      const t = (item.type || '').toLowerCase();
-      const desc = (item.description || '').toLowerCase();
-      return d.includes('praia') || d.includes('mar') || t.includes('praia') || desc.includes('pé na areia');
-    }).length;
+    const boraceiaCount = countFor('boraceia');
+    const costaCount = countFor('costa do sol');
+    const indaiaCount = countFor('indaia');
+    const rivieraCount = countFor('riviera');
+    const guarujaCount = countFor('guaruja');
+    const mogiCount = countFor('mogi');
 
     const formatBadge = (count) => {
       if (count === 0) return '0 Imóveis Disponíveis';
@@ -210,21 +199,29 @@ document.addEventListener('DOMContentLoaded', () => {
       return `${count} Imóveis Disponíveis`;
     };
 
+    const elBoraceia = document.querySelector('[data-count-target="boraceia"]');
+    if (elBoraceia) elBoraceia.textContent = formatBadge(boraceiaCount);
+
     const elCosta = document.querySelector('[data-count-target="costa-do-sol"]');
     if (elCosta) elCosta.textContent = formatBadge(costaCount);
 
-    const elGuaratuba = document.querySelector('[data-count-target="guaratuba"]');
-    if (elGuaratuba) elGuaratuba.textContent = formatBadge(guaratubaCount);
+    const elIndaia = document.querySelector('[data-count-target="indaia"]');
+    if (elIndaia) elIndaia.textContent = formatBadge(indaiaCount);
 
     const elRiviera = document.querySelector('[data-count-target="riviera"]');
     if (elRiviera) elRiviera.textContent = formatBadge(rivieraCount);
 
-    const elPraia = document.querySelector('[data-count-target="praia"]');
-    if (elPraia) elPraia.textContent = formatBadge(praiaCount);
+    const elGuaruja = document.querySelector('[data-count-target="guaruja"]');
+    if (elGuaruja) elGuaruja.textContent = formatBadge(guarujaCount);
+
+    const elMogi = document.querySelector('[data-count-target="mogi"]');
+    if (elMogi) elMogi.textContent = formatBadge(mogiCount);
   }
 
   function getFilteredProperties() {
     const listSource = (typeof getActiveProperties === 'function') ? getActiveProperties() : PROPERTIES_DATA;
+    const clean = str => (str || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
     return listSource.filter(item => {
       // Purpose
       if (state.purpose !== 'todos' && item.purpose !== state.purpose) {
@@ -232,9 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       // Neighborhood
       if (state.neighborhood !== 'todos') {
-        const n = (item.neighborhood || '').toLowerCase();
-        const l = (item.location || '').toLowerCase();
-        const target = state.neighborhood.toLowerCase();
+        const n = clean(item.neighborhood);
+        const l = clean(item.location);
+        const target = clean(state.neighborhood);
         if (!n.includes(target) && !l.includes(target)) {
           return false;
         }
@@ -382,12 +379,17 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="price-value">${item.priceFormatted}</span>
             </div>
             <div class="card-actions">
-              <a href="imovel.html?ref=${item.ref}" class="btn-card-details">Ver Imóvel →</a>
-              <button class="btn-card-details" data-open-modal="${item.id}" style="background:var(--color-gray-100); color:var(--color-navy-900); padding:9px 10px;" title="Visualização Rápida">
-                🔍
+              <a href="imovel.html?ref=${item.ref}" class="btn-card-details">
+                Ver Imóvel →
+              </a>
+              <button class="btn-card-quickview" data-open-modal="${item.id}" title="Visualização Rápida">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
               </button>
               <a href="https://wa.me/5513997198462?text=${waText}" target="_blank" rel="noopener" class="btn-card-whatsapp" title="Falar no WhatsApp com Cinthia">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
               </a>
             </div>
           </div>
@@ -643,21 +645,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Neighborhood Card click shortcuts
-    document.querySelectorAll('[data-neighborhood-filter]').forEach(card => {
-      card.addEventListener('click', () => {
-        const nb = card.getAttribute('data-neighborhood-filter');
-        if (nb === 'Lado Praia') {
-          state.neighborhood = 'todos';
-          state.searchQuery = 'praia';
-          if (searchInput) searchInput.value = 'praia';
-          if (filterNeighborhoodSelect) filterNeighborhoodSelect.value = 'todos';
-        } else {
-          state.neighborhood = nb;
-          state.searchQuery = '';
-          if (searchInput) searchInput.value = '';
-          if (filterNeighborhoodSelect) filterNeighborhoodSelect.value = nb;
-        }
+    // Neighborhood links click shortcuts (rodapé e outros links externos ao carrossel)
+    document.querySelectorAll('.footer-links [data-neighborhood-filter]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const nb = link.getAttribute('data-neighborhood-filter');
+        state.neighborhood = nb;
+        state.searchQuery = '';
+        if (searchInput) searchInput.value = '';
+        if (filterNeighborhoodSelect) filterNeighborhoodSelect.value = nb;
         renderProperties();
         document.getElementById('imoveis')?.scrollIntoView({ behavior: 'smooth' });
       });
@@ -687,6 +682,222 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     renderProperties();
+  }
+
+
+  // =========================================================================
+  // 5. NEIGHBORHOODS COVERFLOW CAROUSEL (EFEITO FOCO 3D)
+  // =========================================================================
+  function initNeighborhoodsCarousel() {
+    const viewport = document.getElementById('neighborhoods-viewport');
+    const track = document.getElementById('neighborhoods-track');
+    const prevBtn = document.getElementById('carousel-prev-btn');
+    const nextBtn = document.getElementById('carousel-next-btn');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const cards = track ? track.querySelectorAll('.neighborhood-card') : [];
+
+    if (!viewport || !track || cards.length === 0) return;
+
+    let currentIndex = 0;
+    let autoplayTimer = null;
+    let isUserInteracting = false;
+    const AUTOPLAY_INTERVAL = 3800; // 3.8 segundos
+
+    // Atualiza classes, dots e translação matemática para centralizar o card ativo
+    function updateCoverFlow(targetIndex, smooth = true) {
+      // Garante índice cíclico no intervalo [0, cards.length - 1]
+      currentIndex = ((targetIndex % cards.length) + cards.length) % cards.length;
+
+      // Atualiza classes nos cards (card central fica nítido, laterais com blur e escala menor)
+      cards.forEach((card, idx) => {
+        const isActive = idx === currentIndex;
+        card.classList.toggle('is-active', isActive);
+        card.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+      });
+
+      // Atualiza indicadores (dots)
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentIndex);
+      });
+
+      // Cálculo de centralização no viewport
+      const activeCard = cards[currentIndex];
+      if (!activeCard) return;
+
+      const cardCenter = activeCard.offsetLeft + (activeCard.offsetWidth / 2);
+      const viewportCenter = viewport.clientWidth / 2;
+      const targetTranslateX = viewportCenter - cardCenter;
+
+      if (!smooth) {
+        track.style.transition = 'none';
+      } else {
+        track.style.transition = 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)';
+      }
+
+      track.style.transform = `translateX(${targetTranslateX}px)`;
+
+      if (!smooth) {
+        // Força reflow e restaura a transição suave
+        track.offsetHeight;
+        track.style.transition = 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)';
+      }
+    }
+
+    // Controle do Autoplay
+    function startAutoplay() {
+      stopAutoplay();
+      autoplayTimer = setInterval(() => {
+        if (!isUserInteracting) {
+          updateCoverFlow(currentIndex + 1, true);
+        }
+      }, AUTOPLAY_INTERVAL);
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    }
+
+    function restartAutoplay() {
+      stopAutoplay();
+      setTimeout(startAutoplay, 800);
+    }
+
+    // Pausa inteligente ao passar o mouse ou interagir
+    const container = track.closest('.neighborhoods-carousel-container') || viewport;
+    container.addEventListener('mouseenter', () => { isUserInteracting = true; });
+    container.addEventListener('mouseleave', () => { isUserInteracting = false; });
+
+    // Setas de navegação
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        updateCoverFlow(currentIndex + 1, true);
+        restartAutoplay();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        updateCoverFlow(currentIndex - 1, true);
+        restartAutoplay();
+      });
+    }
+
+    // Clique direto nos dots
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        updateCoverFlow(idx, true);
+        restartAutoplay();
+      });
+    });
+
+    // Clique nos cards:
+    // - Se o card NÃO é o central, traz ele para o centro (foco).
+    // - Se o card já é o central, filtra o catálogo e rola até os imóveis!
+    cards.forEach((card, idx) => {
+      card.addEventListener('click', (e) => {
+        if (idx !== currentIndex) {
+          e.preventDefault();
+          e.stopPropagation();
+          updateCoverFlow(idx, true);
+          restartAutoplay();
+          return;
+        }
+
+        // Card já está ativo: filtra pelo bairro
+        const nb = card.getAttribute('data-neighborhood-filter');
+        if (nb) {
+          state.neighborhood = nb;
+          state.searchQuery = '';
+          if (searchInput) searchInput.value = '';
+          if (filterNeighborhoodSelect) filterNeighborhoodSelect.value = nb;
+          renderProperties();
+          document.getElementById('imoveis')?.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Suporte a Touch Swipe e Mouse Drag
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    let initialTranslateX = 0;
+
+    function getTrackTranslateX() {
+      const transform = window.getComputedStyle(track).transform;
+      if (!transform || transform === 'none') return 0;
+      const match = transform.match(/matrix.*\((.+)\)/);
+      if (match) {
+        const parts = match[1].split(', ');
+        return parseFloat(parts[4]) || 0;
+      }
+      return 0;
+    }
+
+    function onDragStart(clientX) {
+      isUserInteracting = true;
+      isDragging = true;
+      startX = clientX;
+      currentX = clientX;
+      initialTranslateX = getTrackTranslateX();
+      track.style.transition = 'none';
+    }
+
+    function onDragMove(clientX) {
+      if (!isDragging) return;
+      currentX = clientX;
+      const diff = currentX - startX;
+      track.style.transform = `translateX(${initialTranslateX + diff}px)`;
+    }
+
+    function onDragEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      const diff = currentX - startX;
+      track.style.transition = 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)';
+
+      if (diff < -50) {
+        updateCoverFlow(currentIndex + 1, true);
+      } else if (diff > 50) {
+        updateCoverFlow(currentIndex - 1, true);
+      } else {
+        updateCoverFlow(currentIndex, true);
+      }
+
+      setTimeout(() => { isUserInteracting = false; }, 2500);
+      restartAutoplay();
+    }
+
+    // Touch events (mobile)
+    viewport.addEventListener('touchstart', (e) => {
+      onDragStart(e.touches[0].clientX);
+    }, { passive: true });
+
+    viewport.addEventListener('touchmove', (e) => {
+      onDragMove(e.touches[0].clientX);
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', onDragEnd, { passive: true });
+    viewport.addEventListener('touchcancel', onDragEnd, { passive: true });
+
+    // Redimensionamento responsivo da janela
+    window.addEventListener('resize', () => {
+      updateCoverFlow(currentIndex, false);
+    });
+
+    // Inicializa na posição correta
+    updateCoverFlow(0, false);
+    // Reforça após o carregamento completo de imagens e fontes
+    window.addEventListener('load', () => {
+      updateCoverFlow(0, false);
+    });
+
+    startAutoplay();
   }
 
 

@@ -18,15 +18,17 @@
   <!-- Header -->
   <header class="admin-header-bar">
     <div class="container admin-header-flex">
-      <div style="display:flex; align-items:center; gap:16px;">
-        <img src="assets/img/logo.png" alt="JF Abreu Imóveis" style="height:44px;" />
-        <div>
-          <h2 style="font-size:1.15rem; color:var(--color-gold-400); font-family:var(--font-display); line-height:1;">Painel de Gestão de Imóveis</h2>
-          <span style="font-size:0.8rem; color:#94a3b8;">Cadastre e atualize imóveis para o site</span>
+      <div class="admin-header-brand">
+        <a href="index.html" class="admin-header-logo-link" title="Ir para a Página Inicial">
+          <img src="assets/img/logo.png" alt="JF Abreu Imóveis" class="admin-header-logo" />
+        </a>
+        <div class="admin-header-titles">
+          <h2 class="admin-header-title">Painel de Gestão</h2>
+          <span class="admin-header-sub">JF Abreu Imóveis</span>
         </div>
       </div>
 
-      <div style="display:flex; gap:12px; align-items:center;">
+      <div class="admin-header-controls">
         <!-- Auth Bar (visível apenas quando logado) -->
         <div id="admin-auth-bar" class="admin-auth-bar" style="display:none;">
           <div class="admin-user-badge" title="Usuário conectado">
@@ -41,8 +43,8 @@
           </button>
         </div>
 
-        <a href="index.html" class="btn-admin-secondary" style="padding:8px 18px;">
-          ← Ver Site Principal
+        <a href="index.html" class="btn-admin-secondary btn-admin-header-back" title="Visualizar site público">
+          ← Ver Site
         </a>
       </div>
     </div>
@@ -187,11 +189,12 @@
             <div class="admin-input-group">
               <label for="adm-neighborhood">Bairro / Região *</label>
               <select id="adm-neighborhood" required>
-                <option value="Costa do Sol">Costa do Sol</option>
-                <option value="Guaratuba">Guaratuba</option>
-                <option value="Riviera de São Lourenço">Riviera de São Lourenço</option>
-                <option value="Bertioga Centro">Bertioga Centro</option>
                 <option value="Boracéia">Boracéia</option>
+                <option value="Costa do Sol">Costa do Sol</option>
+                <option value="Indaiá">Indaiá</option>
+                <option value="Riviera de São Lourenço">Riviera de São Lourenço</option>
+                <option value="Guarujá">Guarujá</option>
+                <option value="Mogi das Cruzes">Mogi das Cruzes</option>
               </select>
             </div>
 
@@ -352,7 +355,7 @@
         </div>
 
         <!-- Right: Live Card Preview & Existing List -->
-        <div class="admin-preview-col" style="display:flex; flex-direction:column; gap:32px;">
+        <div class="admin-preview-col">
           
           <!-- Live Preview -->
           <div class="admin-card-box">
@@ -367,24 +370,24 @@
 
           <!-- Existing Properties List -->
           <div class="admin-card-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
-              <div>
-                <h3 style="font-family:var(--font-display); font-size:1.2rem; color:var(--color-navy-900); margin-bottom:2px;">
+            <div class="admin-list-header">
+              <div class="admin-list-title-wrap">
+                <h3 class="admin-list-title">
                   Imóveis Ativos no Site (<span id="total-properties-count">0</span>)
                 </h3>
-                <p style="font-size:0.75rem; color:var(--color-gray-500);">Gerencie, exclua imóveis vendidos ou limpe o catálogo</p>
+                <p class="admin-list-sub">Gerencie, exclua imóveis vendidos ou limpe o catálogo</p>
               </div>
-              <div style="display:flex; gap:8px; align-items:center;">
-                <button type="button" id="btn-clear-all-properties" style="font-size:0.78rem; font-weight:700; color:#dc2626; background:#fee2e2; border:1px solid #fca5a5; padding:6px 12px; border-radius:var(--radius-sm); cursor:pointer; display:inline-flex; align-items:center; gap:4px;" title="Remover todos os imóveis para deixar o catálogo vazio">
+              <div class="admin-list-actions">
+                <button type="button" id="btn-clear-all-properties" class="btn-admin-list-danger" title="Remover todos os imóveis para deixar o catálogo vazio">
                   🗑️ Excluir Todos
                 </button>
-                <button type="button" id="btn-reset-defaults" style="font-size:0.78rem; font-weight:600; color:var(--color-navy-800); background:#f1f5f9; border:1px solid var(--color-gray-300); padding:6px 12px; border-radius:var(--radius-sm); cursor:pointer; display:inline-flex; align-items:center; gap:4px;" title="Restaurar os imóveis padrão de demonstração">
+                <button type="button" id="btn-reset-defaults" class="btn-admin-list-secondary" title="Restaurar os imóveis padrão de demonstração">
                   🔄 Restaurar Padrões
                 </button>
               </div>
             </div>
 
-            <div id="admin-properties-list" style="display:flex; flex-direction:column; gap:12px; max-height:450px; overflow-y:auto; padding-right:6px;">
+            <div id="admin-properties-list" class="admin-properties-list">
               <!-- Rendered dynamically -->
             </div>
           </div>

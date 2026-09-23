@@ -371,6 +371,11 @@ function renderSimilarProperties(currentProp) {
 
   // Filter out current property, pick up to 3 similar
   const similar = PROPERTIES_DATA.filter(p => p.id !== currentProp.id).slice(0, 3);
+  if (similar.length === 0) {
+    const section = grid.closest('.similar-properties-section');
+    if (section) section.style.display = 'none';
+    return;
+  }
 
   grid.innerHTML = similar.map(item => `
     <article class="property-card" style="cursor:pointer;" onclick="window.location.href='imovel.html?ref=${item.ref}'">
@@ -392,9 +397,11 @@ function renderSimilarProperties(currentProp) {
             <span class="price-label">${item.purpose === 'locacao' ? 'Locação' : 'Venda'}</span>
             <span class="price-value">${item.priceFormatted}</span>
           </div>
-          <a href="imovel.html?ref=${item.ref}" class="btn-card-details">
-            Ver Imóvel →
-          </a>
+          <div class="card-actions">
+            <a href="imovel.html?ref=${item.ref}" class="btn-card-details">
+              Ver Imóvel →
+            </a>
+          </div>
         </div>
       </div>
     </article>

@@ -591,9 +591,11 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="price-label">${purpose === 'locacao' ? 'Locação' : 'Venda'}</span>
               <span class="price-value">${priceFormatted}</span>
             </div>
-            <a href="imovel.html?ref=${ref}" target="_blank" class="btn-card-details">
-              Ver Página →
-            </a>
+            <div class="card-actions">
+              <a href="imovel.html?ref=${ref}" target="_blank" class="btn-card-details">
+                Ver Página →
+              </a>
+            </div>
           </div>
         </div>
       </article>
@@ -631,23 +633,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     propertiesList.innerHTML = all.map((item) => {
       return `
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 14px; background:var(--color-sand-50); border:1px solid var(--color-gray-200); border-radius:var(--radius-sm); transition:all 0.2s ease;">
-          <div style="display:flex; align-items:center; gap:12px; overflow:hidden;">
-            <img src="${item.image}" alt="" style="width:48px; height:38px; object-fit:cover; border-radius:6px; flex-shrink:0; border:1px solid rgba(0,0,0,0.1);" />
-            <div style="overflow:hidden;">
-              <div style="font-size:0.86rem; font-weight:700; color:var(--color-navy-900); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+        <div class="admin-property-item">
+          <div class="admin-property-item-left">
+            <img src="${item.image}" alt="" class="admin-property-item-thumb" />
+            <div class="admin-property-item-info">
+              <div class="admin-property-item-title">
                 Ref. ${item.ref} - ${item.title}
               </div>
-              <div style="font-size:0.75rem; color:var(--color-gold-600); font-weight:600; margin-top:2px;">
+              <div class="admin-property-item-meta">
                 ${item.priceFormatted} • ${item.neighborhood || 'Bertioga'}
               </div>
             </div>
           </div>
-          <div style="display:flex; gap:8px; align-items:center; flex-shrink:0; margin-left:10px;">
-            <a href="imovel.html?ref=${item.ref}" target="_blank" style="font-size:0.78rem; font-weight:700; color:var(--color-navy-800); padding:5px 10px; background:#e2e8f0; border-radius:4px; text-decoration:none;" title="Ver página deste imóvel">
+          <div class="admin-property-item-actions">
+            <a href="imovel.html?ref=${item.ref}" target="_blank" class="btn-item-view" title="Ver página deste imóvel">
               Ver ↗
             </a>
-            <button type="button" data-delete-ref="${item.ref}" style="color:#dc2626; font-size:0.78rem; font-weight:700; padding:5px 10px; border-radius:4px; background:#fee2e2; border:1px solid #fca5a5; cursor:pointer;" title="Excluir imóvel (vendido ou removido)">
+            <button type="button" data-delete-ref="${item.ref}" class="btn-item-delete" title="Excluir imóvel (vendido ou removido)">
               🗑️ Excluir
             </button>
           </div>
